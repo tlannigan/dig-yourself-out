@@ -1,7 +1,7 @@
-import { RuleCategory } from './general';
+import { RuleCategory } from './general'
 
 export const crashReportRules: RuleCategory = {
-    title: "Crash Report",
+    title: 'Crash Report',
     versionChecks: [],
-    rules: []
+    rules: [],
 }

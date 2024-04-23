@@ -6,5 +6,5 @@ export const hotspotCrashDumpParser = {
         const issues = getIssues({ lines }, [hotspotCrashDumpRules])
 
         return { issues }
-    }
+    },
 }

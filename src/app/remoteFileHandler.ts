@@ -17,18 +17,18 @@ export default async function fetchRemoteFile(url: string) {
 function getRawFileUrl(fileUrl: string): string {
     const url = fileUrl.trim()
     const fileQueryId = getFileQueryId(url)
-    // Gnomebot pastebin
     if (url.startsWith('https://gnomebot.dev/paste/') && !url.endsWith('/raw')) {
+        // Gnomebot pastebin
         return `${url}/raw`
-    // Pastebin pastebin
     } else if (url.startsWith('https://pastebin.com/')) {
+        // Pastebin pastebin
         if (url.startsWith('https://pastebin.com/raw/')) {
             return url
         } else {
             return `https://pastebin.com/raw/${fileQueryId}`
         }
-    // MC Logs pastebin
     } else if (url.startsWith('https://mclo.gs/')) {
+        // MC Logs pastebin
         return `https://api.mclo.gs/1/raw/${fileQueryId}`
     } else if (isUrlSupportedDomain(url)) {
         return url
@@ -43,8 +43,10 @@ function getFileQueryId(url: string): string {
 }
 
 function isUrlSupportedDomain(url: string): boolean {
-    return url.startsWith('https://gnomebot.dev/paste/') ||
+    return (
+        url.startsWith('https://gnomebot.dev/paste/') ||
         url.startsWith('https://pastebin.com/') ||
         url.startsWith('https://mclo.gs/') ||
         url.startsWith('https://gist.githubusercontent.com/')
+    )
 }

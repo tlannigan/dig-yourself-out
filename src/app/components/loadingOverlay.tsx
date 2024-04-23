@@ -16,11 +16,18 @@ export default function LoadingOverlay({ isLoading, isParsing }: LoadingOverlayP
     }
 
     return (
-        <Box pos='absolute' top={0} left={0} w="100dvw" h='100dvh' bg='rgba(32, 32, 32, 0.75)' display={(isLoading || isParsing) ? 'block' : 'none'}>
-            <Flex justify='center' alignContent='middle' direction='row' minH='100dvh'>
-                <Flex justify='center' direction='column'>
+        <Box
+            display={isLoading || isParsing ? 'block' : 'none'}
+            pos="absolute"
+            top={0}
+            left={0}
+            w="100dvw"
+            h="100dvh"
+            bg="rgba(32, 32, 32, 0.75)">
+            <Flex justify="center" alignContent="middle" direction="row" minH="100dvh">
+                <Flex justify="center" direction="column">
                     <Text mb={4}>{getLabel()}</Text>
-                    <Spinner size='xl' thickness='4px' color='white' mx='auto' label='Parsing file...' />
+                    <Spinner size="xl" thickness="4px" color="white" mx="auto" label="Parsing file..." />
                 </Flex>
             </Flex>
         </Box>

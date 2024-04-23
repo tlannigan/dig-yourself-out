@@ -5,7 +5,7 @@ export enum FileType {
     LAUNCHER_LOG,
     HOTSPOT_CRASH_DUMP,
     SERVER_PROPERTIES,
-    UNKNOWN
+    UNKNOWN,
 }
 
 export enum Launcher {
@@ -19,7 +19,7 @@ export enum Launcher {
     FTB_APP,
     ATLAUNCHER,
     GDLAUNCHER,
-    UNKNOWN
+    UNKNOWN,
 }
 
 export enum Equality {
@@ -29,5 +29,5 @@ export enum Equality {
     GT,
     LTE,
     LT,
-    RANGE
+    RANGE,
 }

@@ -23,144 +23,154 @@ export type VersionCheck = {
 }
 
 export const generalRules: RuleCategory = {
-    title: "General",
+    title: 'General',
     versionChecks: [],
     rules: [
         {
-            level: "error",
-            title: "Java 8 required",
-            description: "Minecraft 1.16.5 and older requires Java 8.",
+            level: 'error',
+            title: 'Java 8 required',
+            description: 'Minecraft 1.16.5 and older requires Java 8.',
             candidates: [],
             onlyAppearsOnce: true,
             onlyVersionChecks: true,
             versionChecks: [
                 {
-                    type: "mcVersion",
+                    type: 'mcVersion',
                     equality: Equality.LTE,
-                    version: "1.16.5"
+                    version: '1.16.5',
                 },
                 {
-                    type: "java",
+                    type: 'java',
                     equality: Equality.GTE,
-                    version: "1.8.1"
-                }
-            ]
+                    version: '1.8.1',
+                },
+            ],
         },
         {
-            level: "error",
-            title: "Java 16 required",
-            description: "Minecraft 1.17 requires Java 16.",
+            level: 'error',
+            title: 'Java 16 required',
+            description: 'Minecraft 1.17 requires Java 16.',
             candidates: [],
             onlyAppearsOnce: true,
             onlyVersionChecks: true,
             versionChecks: [
                 {
-                    type: "mcVersion",
+                    type: 'mcVersion',
                     equality: Equality.RANGE,
-                    version: "1.17.0...1.18.3"
+                    version: '1.17.0...1.18.3',
                 },
                 {
-                    type: "java",
+                    type: 'java',
                     equality: Equality.RANGE,
-                    version: "16.0.0...17.0.1"
-                }
-            ]
+                    version: '16.0.0...17.0.1',
+                },
+            ],
         },
         {
-            level: "error",
-            title: "Java 17 required",
-            description: "Minecraft 1.18+ requires Java 17.",
+            level: 'error',
+            title: 'Java 17 required',
+            description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
             onlyAppearsOnce: true,
             onlyVersionChecks: true,
             versionChecks: [
                 {
-                    type: "mcVersion",
+                    type: 'mcVersion',
                     equality: Equality.GTE,
-                    version: "1.18.0"
+                    version: '1.18.0',
                 },
                 {
-                    type: "java",
+                    type: 'java',
                     equality: Equality.LT,
-                    version: "17.0.0",
-                }
-            ]
+                    version: '17.0.0',
+                },
+            ],
         },
         {
-            level: "error",
-            title: "Java 17 required",
-            description: "Minecraft 1.18+ requires Java 17.",
+            level: 'error',
+            title: 'Java 17 required',
+            description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
             onlyAppearsOnce: true,
             onlyVersionChecks: true,
             versionChecks: [
                 {
-                    type: "mcVersion",
+                    type: 'mcVersion',
                     equality: Equality.GTE,
-                    version: "1.18.0"
+                    version: '1.18.0',
                 },
                 {
-                    type: "java",
+                    type: 'java',
                     equality: Equality.RANGE,
-                    version: "18.0.0...21.0.0",
-                }
-            ]
+                    version: '18.0.0...21.0.0',
+                },
+            ],
         },
         {
-            level: "error",
-            title: "Java 17 required",
-            description: "Minecraft 1.18+ requires Java 17.",
+            level: 'error',
+            title: 'Java 17 required',
+            description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
             onlyAppearsOnce: true,
             onlyVersionChecks: true,
             versionChecks: [
                 {
-                    type: "mcVersion",
+                    type: 'mcVersion',
                     equality: Equality.GTE,
-                    version: "1.18.0"
+                    version: '1.18.0',
                 },
                 {
-                    type: "java",
+                    type: 'java',
                     equality: Equality.GTE,
-                    version: "22.0.0",
-                }
-            ]
+                    version: '22.0.0',
+                },
+            ],
         },
         {
-            level: "error",
-            title: "Failed to bind to port",
-            description: "A process is already using the assigned port. Close any other servers or restart your computer.",
-            candidates: ["**** FAILED TO BIND TO PORT!"],
+            level: 'error',
+            title: 'Failed to bind to port',
+            description:
+                'A process is already using the assigned port. Close any other servers or restart your computer.',
+            candidates: ['**** FAILED TO BIND TO PORT!'],
             onlyAppearsOnce: true,
             onlyVersionChecks: false,
-            versionChecks: []
+            versionChecks: [],
         },
         {
-            level: "error",
-            title: "Mixin injection failure",
-            description: "A mod was unable to inject mixins. This may be caused by a single mod or an incompatibility between one or more mods.",
-            candidates: ["Mixin apply failed", "ERROR]: Mixin apply for mod", "Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError"],
+            level: 'error',
+            title: 'Mixin injection failure',
+            description:
+                'A mod was unable to inject mixins. This may be caused by a single mod or an incompatibility between one or more mods.',
+            candidates: [
+                'Mixin apply failed',
+                'ERROR]: Mixin apply for mod',
+                'Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError',
+            ],
             onlyAppearsOnce: false,
             onlyVersionChecks: false,
-            versionChecks: []
+            versionChecks: [],
         },
         {
-            level: "error",
-            title: "Mixin injection failure",
-            description: "Something is conflicting with Fabric's reach_entity_attributes module mixins. You will likely have to binary search to find the issue.",
-            candidates: ["Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError: Critical injection failure: Constant modifier method getActualReachDistance(DLnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)D in mixins.reach-entity-attributes.json:ItemMixin from mod reach_entity_attributes failed injection check"],
+            level: 'error',
+            title: 'Mixin injection failure',
+            description:
+                "Something is conflicting with Fabric's reach_entity_attributes module mixins. You will likely have to binary search to find the issue.",
+            candidates: [
+                'Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError: Critical injection failure: Constant modifier method getActualReachDistance(DLnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)D in mixins.reach-entity-attributes.json:ItemMixin from mod reach_entity_attributes failed injection check',
+            ],
             onlyAppearsOnce: true,
             onlyVersionChecks: false,
-            versionChecks: []
+            versionChecks: [],
         },
         {
-            level: "error",
-            title: "Invalid or corrupted config",
-            description: "One or more config files have become corrupted. Fix or delete them. When this error occurs there are usually multiple config files that require attention.",
-            candidates: ["ConfigLoadingException: Failed loading config file"],
+            level: 'error',
+            title: 'Invalid or corrupted config',
+            description:
+                'One or more config files have become corrupted. Fix or delete them. When this error occurs there are usually multiple config files that require attention.',
+            candidates: ['ConfigLoadingException: Failed loading config file'],
             onlyAppearsOnce: true,
             onlyVersionChecks: false,
-            versionChecks: []
-        }
-    ]
+            versionChecks: [],
+        },
+    ],
 }

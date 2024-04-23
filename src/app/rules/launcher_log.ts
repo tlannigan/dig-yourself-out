@@ -1,7 +1,7 @@
-import { RuleCategory } from './general';
+import { RuleCategory } from './general'
 
 export const launcherLogRules: RuleCategory = {
-    title: "Launcher Log",
+    title: 'Launcher Log',
     versionChecks: [],
-    rules: []
+    rules: [],
 }

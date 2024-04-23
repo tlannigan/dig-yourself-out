@@ -15,28 +15,30 @@ export const standardLogParser = {
         return {
             ...args,
             ...systemInfo,
-            issues
+            issues,
         }
-    }
+    },
 }
 
 export function getArgs(lines: string[]) {
     const firstFewLines = lines.slice(0, 10)
 
     // Check if using Fabric
-    const fabricArgsLine = firstFewLines.find(l => l.toLowerCase().includes('loading minecraft ') && l.toLowerCase().includes('with fabric loader '))
+    const fabricArgsLine = firstFewLines.find(
+        (l) => l.toLowerCase().includes('loading minecraft ') && l.toLowerCase().includes('with fabric loader '),
+    )
     if (fabricArgsLine) {
         return getFabricArgs(fabricArgsLine)
     }
 
     // Check if using Forge 1.16 and newer
-    const modernArgsLine = firstFewLines.find(l => l.toLowerCase().includes('modlauncher running: args'))
+    const modernArgsLine = firstFewLines.find((l) => l.toLowerCase().includes('modlauncher running: args'))
     if (modernArgsLine) {
         return getModernArgs(modernArgsLine)
     }
 
     // Check if using Forge 1.12 or below
-    const legacyInfoLine = firstFewLines.find(l => l.toLowerCase().includes('forge mod loader version'))
+    const legacyInfoLine = firstFewLines.find((l) => l.toLowerCase().includes('forge mod loader version'))
     if (legacyInfoLine) {
         return getLegacyArgs(legacyInfoLine)
     }
@@ -49,7 +51,7 @@ export function getFabricArgs(argsLine: string) {
 
     return {
         mcVersion: splitArgsLine[mcVersionIndex],
-        fabricVersion: splitArgsLine[fabricLoaderVersion].trim()
+        fabricVersion: splitArgsLine[fabricLoaderVersion].trim(),
     }
 }
 
@@ -61,8 +63,8 @@ export function getModernArgs(argsLine: string) {
 
     // Separate keys from values and add them to the args object
     const keyValuePairs = argsSlice.split(', ')
-    const keys = keyValuePairs.filter(s => s.startsWith('--'))
-    const values = keyValuePairs.filter(s => !s.startsWith('--'))
+    const keys = keyValuePairs.filter((s) => s.startsWith('--'))
+    const values = keyValuePairs.filter((s) => !s.startsWith('--'))
     keys.forEach((key, index) => {
         const keyName = key.substring(2)
         if (keyName.startsWith('fml.')) {
@@ -73,7 +75,7 @@ export function getModernArgs(argsLine: string) {
     })
 
     args.launcher = args.assetsDir ? getLauncherName(args.assetsDir) : ''
-    
+
     return args
 }
 
@@ -85,26 +87,26 @@ export function getLegacyArgs(argsLine: string) {
     const forgeVersionIndex = modloaderInfo.indexOf('version') + 1
     const forgeVersion = modloaderInfo[forgeVersionIndex]
 
-    return { mcVersion,forgeVersion }
+    return { mcVersion, forgeVersion }
 }
 
 export function getSystemInfo(lines: string[]) {
-    const forgeModernInfoLine = lines.find(l => l.toLowerCase().includes('starting: java version'))
+    const forgeModernInfoLine = lines.find((l) => l.toLowerCase().includes('starting: java version'))
     if (forgeModernInfoLine) {
         return {
-            ...getModernSystemInfo(forgeModernInfoLine)
+            ...getModernSystemInfo(forgeModernInfoLine),
         }
     }
 
-    const forgeLegacyInfoLine = lines.find(l => l.toLowerCase().includes('java is'))
+    const forgeLegacyInfoLine = lines.find((l) => l.toLowerCase().includes('java is'))
     if (forgeLegacyInfoLine) {
         return {
             memoryFlags: getMemoryFlags(lines),
-            ...getLegacySystemInfo(forgeLegacyInfoLine)
+            ...getLegacySystemInfo(forgeLegacyInfoLine),
         }
     }
 
-    const fabricInfoLine = lines.find(l => l.toLowerCase().includes('    - java'))
+    const fabricInfoLine = lines.find((l) => l.toLowerCase().includes('    - java'))
     if (fabricInfoLine) {
         return { java: fabricInfoLine.split('    - java ')[1].trim() }
     }
@@ -145,10 +147,10 @@ export function getLegacySystemInfo(infoLine: string) {
 
 // Try to find -Xmx and -Xms flags
 export function getMemoryFlags(lines: string[]) {
-    const jvmFlagLine = lines.find(l => l.trim().startsWith('JVM Flags:'))
+    const jvmFlagLine = lines.find((l) => l.trim().startsWith('JVM Flags:'))
     if (jvmFlagLine) {
         const jvmFlags = jvmFlagLine.split('; ')
-        const memoryFlags = jvmFlags[1].split(' ').filter(flag => flag.startsWith('-Xmx') || flag.startsWith('-Xms'))
+        const memoryFlags = jvmFlags[1].split(' ').filter((flag) => flag.startsWith('-Xmx') || flag.startsWith('-Xms'))
         return memoryFlags.join(', ')
     }
     return ''

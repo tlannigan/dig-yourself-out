@@ -13,7 +13,7 @@ export async function getFileInfo(
     file: any,
     removeDuplicates: boolean = true,
     useLocalTime: boolean = false,
-    enableDebugging: boolean = false
+    enableDebugging: boolean = false,
 ) {
     const lines = await getLines(file, removeDuplicates)
     const fileType = getMinecraftFileType(lines, file.name)
@@ -26,10 +26,10 @@ export async function getFileInfo(
         name: file.name,
         modified: getLastModified(file.lastModified, useLocalTime),
         lineCount: lines.length.toString(),
-        lines: lines, 
-        ...parsedFileInfo
+        lines: lines,
+        ...parsedFileInfo,
     }
-    
+
     return fileInfo
 }
 
@@ -60,6 +60,6 @@ export function getLastModified(lastModified: number, useLocalTime: boolean) {
     }
 
     const date = new Date(lastModified)
-    const timeZone = useLocalTime ? Intl.DateTimeFormat().resolvedOptions().timeZone : "Zulu"
+    const timeZone = useLocalTime ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'Zulu'
     return date.toLocaleString('en-US', { timeZone })
 }

@@ -1,9 +1,9 @@
-import { ChangeEventHandler, DragEventHandler, useCallback, useEffect, useState } from 'react';
-import { getFileInfo } from '../parsers/parser';
-import { useToast, useDisclosure } from '@chakra-ui/react';
-import fetchRemoteFile from '../remoteFileHandler';
-import UploadCallToAction from './uploadCallToAction';
-import Inspector from './inspector';
+import { ChangeEventHandler, DragEventHandler, useCallback, useEffect, useState } from 'react'
+import { getFileInfo } from '../parsers/parser'
+import { useToast, useDisclosure } from '@chakra-ui/react'
+import fetchRemoteFile from '../remoteFileHandler'
+import UploadCallToAction from './uploadCallToAction'
+import Inspector from './inspector'
 
 export default function InspectorContainer() {
     const [uploadedFile, setUploadedFile] = useState<File>()
@@ -18,15 +18,18 @@ export default function InspectorContainer() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const toast = useToast()
-    const showToast = useCallback((errorMessage: string) => {
-        toast({
-            title: 'Error',
-            description: errorMessage,
-            status: 'error',
-            duration: 5000,
-            isClosable: true
-        })
-    }, [toast])
+    const showToast = useCallback(
+        (errorMessage: string) => {
+            toast({
+                title: 'Error',
+                description: errorMessage,
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            })
+        },
+        [toast],
+    )
 
     // Parses file information
     useEffect(() => {
@@ -74,7 +77,7 @@ export default function InspectorContainer() {
         event.preventDefault()
 
         if (event.dataTransfer && event.dataTransfer.items && event.dataTransfer.items.length === 1) {
-            [...event.dataTransfer.items].forEach((item) => {
+            ;[...event.dataTransfer.items].forEach((item) => {
                 if (item.kind === 'file') {
                     setUploadedFile(item.getAsFile())
                 }
@@ -116,7 +119,8 @@ export default function InspectorContainer() {
                 setRemoteFileUrl={setRemoteFileUrl}
                 isLoading={isLoading}
                 isParsing={isParsing}
-                file={file} />
+                file={file}
+            />
         )
     } else {
         return (
@@ -125,7 +129,8 @@ export default function InspectorContainer() {
                 disclosure={{ isOpen, onOpen, onClose }}
                 setRemoteFileUrl={setRemoteFileUrl}
                 isLoading={isLoading}
-                isParsing={isParsing} />
+                isParsing={isParsing}
+            />
         )
     }
 }

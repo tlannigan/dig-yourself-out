@@ -14,11 +14,11 @@ export default async function getLines(file: File, removeDuplicates: boolean) {
     try {
         allLines = await parseLines(reader, removeDuplicates)
     } catch (e) {
-        console.log("getFileLines Error: " + e)
+        console.log('getFileLines Error: ' + e)
     } finally {
         reader.releaseLock()
     }
-    
+
     return allLines
 }
 
@@ -44,7 +44,7 @@ export async function parseLines(streamReader: ReadableStreamDefaultReader<strin
             const poppedLine = lines.pop() as string
             state.partialLine = poppedLine
         }
-        
+
         if (removeDuplicates) {
             const deduplicatedLines = deduplicateLines(lines, state, done)
             state.allLines = state.allLines.concat(deduplicatedLines)
@@ -61,7 +61,7 @@ export async function parseLines(streamReader: ReadableStreamDefaultReader<strin
 
 export function deduplicateLines(lines: string[], state: GetLinesState, done: boolean) {
     const deduplicatedLines = []
-            
+
     const addRepeatedLine = () => {
         deduplicatedLines.push(`      Repeated ${state.duplicateCount} more time(s)`)
     }
@@ -81,12 +81,13 @@ export function deduplicateLines(lines: string[], state: GetLinesState, done: bo
         if (line > 0) {
             const isLineDuplicateOfPreviousLine = removeTimestamp(lines[line]) === removeTimestamp(lines[line - 1])
             if (isLineDuplicateOfPreviousLine) {
-                if (state.duplicateIndex < 0) { // If this is a new duplicate chain
+                if (state.duplicateIndex < 0) {
+                    // If this is a new duplicate chain
                     state.duplicateIndex = line - 1 // Mark the first of the duplicates
                 }
                 state.duplicateCount++
             } else {
-                if ((state.duplicateIndex >= 0) && (line !== lines.length - 1)) {
+                if (state.duplicateIndex >= 0 && line !== lines.length - 1) {
                     addRepeatedLine()
                     resetDuplicateInfo()
                     deduplicatedLines.push(lines[line])
@@ -95,7 +96,9 @@ export function deduplicateLines(lines: string[], state: GetLinesState, done: bo
                 }
             }
         } else {
-            const isLineDuplicateOfPreviousIterationsLastLine = (state.allLines.length > 0) && (removeTimestamp(lines[line]) === removeTimestamp(state.allLines[state.allLines.length - 1]))
+            const isLineDuplicateOfPreviousIterationsLastLine =
+                state.allLines.length > 0 &&
+                removeTimestamp(lines[line]) === removeTimestamp(state.allLines[state.allLines.length - 1])
             if (isLineDuplicateOfPreviousIterationsLastLine) {
                 state.duplicateCount++
                 if (lines.length === 1) {
@@ -112,23 +115,23 @@ export function deduplicateLines(lines: string[], state: GetLinesState, done: bo
         addRepeatedLine()
         resetDuplicateInfo()
     }
-    
+
     return deduplicatedLines
 }
 
 export function replaceTabsWithSpaces(lines: string[]) {
-    return lines.map(line => line.replace(/\t/gy, '    '))
+    return lines.map((line) => line.replace(/\t/gy, '    '))
 }
 
 export function removeAllNewlineCharacters(lines: string[]) {
-    return lines.map(line => line.replace(/\r?\n|\r/g, ''))
+    return lines.map((line) => line.replace(/\r?\n|\r/g, ''))
 }
 
 export function addNewlineCharacterEndings(lines: string[]) {
     return lines.map((line, index) => {
         const isBlank = line.trim() === ''
         const isLastElement = index === lines.length - 1
-        return (!isBlank && !isLastElement) ? line + '\r' : line
+        return !isBlank && !isLastElement ? line + '\r' : line
     })
 }
 

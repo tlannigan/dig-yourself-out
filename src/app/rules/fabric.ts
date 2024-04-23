@@ -1,14 +1,14 @@
-import { Equality } from '../enums';
-import { RuleCategory } from './general';
+import { Equality } from '../enums'
+import { RuleCategory } from './general'
 
 export const fabricRules: RuleCategory = {
-    title: "Fabric",
+    title: 'Fabric',
     versionChecks: [
         {
-            type: "fabricVersion",
+            type: 'fabricVersion',
             equality: Equality.GT,
-            version: "0.0.0"
-        }
+            version: '0.0.0',
+        },
     ],
-    rules: []
+    rules: [],
 }

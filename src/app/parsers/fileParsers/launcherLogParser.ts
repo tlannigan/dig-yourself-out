@@ -7,5 +7,5 @@ export const launcherLogParser = {
         const issues = getIssues({ lines }, [generalRules, launcherLogRules])
 
         return { issues }
-    }
+    },
 }

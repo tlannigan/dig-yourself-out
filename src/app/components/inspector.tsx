@@ -21,7 +21,7 @@ export default function Inspector({
     disclosure,
     isLoading,
     isParsing,
-    file
+    file,
 }: InspectorProps) {
     return (
         <Flex
@@ -31,13 +31,9 @@ export default function Inspector({
             onDrop={handlers.dropHandler}
             onDragOver={handlers.dragOverHandler}
             onDragLeave={handlers.dragLeaveHandler}>
-
             <LoadingOverlay isLoading={isLoading} isParsing={isParsing} />
 
-            <Sidebar
-                fileBrowserHandler={handlers.fileBrowserHandler}
-                disclosure={disclosure}
-                file={file} />
+            <Sidebar fileBrowserHandler={handlers.fileBrowserHandler} disclosure={disclosure} file={file} />
 
             <Flex direction="column">
                 {/* <Flex px={4} pt={4} direction='row' columnGap={4}>
@@ -47,10 +43,7 @@ export default function Inspector({
                 <Log file={file} />
             </Flex>
 
-            <UploadRemoteFileModal
-                setRemoteFileUrl={setRemoteFileUrl}
-                disclosure={disclosure}
-                isLoading={isLoading} />
+            <UploadRemoteFileModal setRemoteFileUrl={setRemoteFileUrl} disclosure={disclosure} isLoading={isLoading} />
         </Flex>
     )
 }

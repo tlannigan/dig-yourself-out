@@ -1,4 +1,16 @@
-import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Table, TableContainer, Tbody, Td, Tooltip, Tr } from '@chakra-ui/react'
+import {
+    AccordionButton,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
+    Box,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Tooltip,
+    Tr,
+} from '@chakra-ui/react'
 
 export type FileDetailsProps = {
     file: any
@@ -15,14 +27,8 @@ export default function FileDetails({ file }: FileDetailsProps) {
                     <Tr>
                         <Td>{rowName}:</Td>
                         <Td>
-                            <Tooltip
-                                isDisabled={isDisabled}
-                                label={data}
-                                fontSize='lg'
-                                bg='green.500'>
-                                
+                            <Tooltip isDisabled={isDisabled} label={data} fontSize="lg" bg="green.500">
                                 {truncateLine(data, maxCharacterLength)}
-
                             </Tooltip>
                         </Td>
                     </Tr>
@@ -31,32 +37,25 @@ export default function FileDetails({ file }: FileDetailsProps) {
         }
 
         return (
-            <AccordionItem borderColor='transparent'>
+            <AccordionItem borderColor="transparent">
                 <h2>
-                    <AccordionButton
-                        fontSize={16}
-                        color='green.500'
-                        p={4}
-                        _hover={{ bg: '#333030' }}
-                        borderRadius='lg'>
-                            
-                        <Box as='span' flex={1} textAlign='left'>
+                    <AccordionButton fontSize={16} color="green.500" p={4} _hover={{ bg: '#333030' }} borderRadius="lg">
+                        <Box as="span" flex={1} textAlign="left">
                             Details
                         </Box>
-                    <AccordionIcon />
+                        <AccordionIcon />
                     </AccordionButton>
                 </h2>
                 <AccordionPanel
-                    borderRadius='lg'
+                    borderRadius="lg"
                     borderWidth={2}
-                    borderColor='green.500'
+                    borderColor="green.500"
                     fontSize={14}
-                    textColor='white'
+                    textColor="white"
                     px={0}
                     py={2}>
-
                     <TableContainer>
-                        <Table variant='unstyled' size='sm'>
+                        <Table variant="unstyled" size="sm">
                             <Tbody>
                                 {getTableRow('Filename', file.name)}
                                 {getTableRow('Modified', file.modified)}

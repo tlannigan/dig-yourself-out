@@ -5,7 +5,7 @@ import { Equality } from '../enums'
 // Returns an array of issue components for each matched rule
 export default function getIssues(fileInfo: any, ruleCategories: any, enableDebugging = false) {
     const issues: ReactElement[] = []
-    
+
     // Iterate over rule categories
     for (const ruleCategory of ruleCategories) {
         // Short circuit if rule category doesn't apply to file
@@ -15,7 +15,7 @@ export default function getIssues(fileInfo: any, ruleCategories: any, enableDebu
         for (const [index, rule] of ruleCategory.rules.entries()) {
             // Short circuit if file doesn't pass rule's version checks
             if (!doesRuleApplyToFile(fileInfo, rule, enableDebugging)) continue
-            
+
             // Check if rule only consists of version checks and no line checking
             if (rule.onlyVersionChecks) {
                 issues.push(<Issue rule={rule} lineNumber={-1} key={index} />)
@@ -34,7 +34,7 @@ export default function getIssues(fileInfo: any, ruleCategories: any, enableDebu
     if (issues.length === 0) {
         issues.push(getNoIssueIssue())
     }
-    
+
     return issues
 }
 
@@ -56,16 +56,18 @@ function doesRuleApplyToFile(fileInfo: any, rule: any, enableDebugging: boolean)
             const greaterThanOrEqualToCheck = versionCompare(fileInfo[check.type], startInclusive, { zeroExtend: true })
             const lessThanCheck = versionCompare(fileInfo[check.type], endExclusive, { zeroExtend: true })
 
-            if (enableDebugging) console.log(`${check.type}: ${fileInfo[check.type]} between ${startInclusive} and ${endExclusive}`)
+            if (enableDebugging)
+                console.log(`${check.type}: ${fileInfo[check.type]} between ${startInclusive} and ${endExclusive}`)
 
-            if ((greaterThanOrEqualToCheck < 0) || (lessThanCheck >= 0)) {
+            if (greaterThanOrEqualToCheck < 0 || lessThanCheck >= 0) {
                 return false
             }
         } else {
             const comparison = versionCompare(fileInfo[check.type], check.version, { zeroExtend: true })
-    
-            if (enableDebugging) console.log(`${check.type + ': ' + fileInfo[check.type]} ${check.equality} ${check.version} Result: ${comparison}`)
-    
+
+            if (enableDebugging)
+                console.log(`${check.type + ': ' + fileInfo[check.type]} ${check.equality} ${check.version} Result: ${comparison}`)
+
             if (check.equality === Equality.EQ && comparison !== 0) {
                 return false
             } else if (check.equality === Equality.NOT && comparison === 0) {
@@ -118,54 +120,52 @@ function versionCompare(v1: string, v2: string, options: any): number {
     var lexicographical: boolean = options && options.lexicographical,
         zeroExtend: boolean = options && options.zeroExtend,
         v1parts: any[] = v1.split('.'),
-        v2parts: any[] = v2.split('.');
+        v2parts: any[] = v2.split('.')
 
     function isValidPart(x: string) {
-        return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
+        return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x)
     }
 
     if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
-        return NaN;
+        return NaN
     }
 
     if (zeroExtend) {
-        while (v1parts.length < v2parts.length) v1parts.push("0");
-        while (v2parts.length < v1parts.length) v2parts.push("0");
+        while (v1parts.length < v2parts.length) v1parts.push('0')
+        while (v2parts.length < v1parts.length) v2parts.push('0')
     }
 
     if (!lexicographical) {
-        v1parts = v1parts.map(Number);
-        v2parts = v2parts.map(Number);
+        v1parts = v1parts.map(Number)
+        v2parts = v2parts.map(Number)
     }
 
     for (var i = 0; i < v1parts.length; ++i) {
         if (v2parts.length == i) {
-            return 1;
+            return 1
         }
 
         if (v1parts[i] == v2parts[i]) {
-            continue;
-        }
-        else if (v1parts[i] > v2parts[i]) {
-            return 1;
-        }
-        else {
-            return -1;
+            continue
+        } else if (v1parts[i] > v2parts[i]) {
+            return 1
+        } else {
+            return -1
         }
     }
 
     if (v1parts.length != v2parts.length) {
-        return -1;
+        return -1
     }
 
-    return 0;
+    return 0
 }
 
 export function getNoIssueIssue() {
-    const noIssueRule =  {
-        level: "info",
-        title: "No issues detected",
-        description: "This is either a good thing or a bad thing."
+    const noIssueRule = {
+        level: 'info',
+        title: 'No issues detected',
+        description: 'This is either a good thing or a bad thing.',
     }
 
     return <Issue rule={noIssueRule} lineNumber={-1} key={0} />

@@ -7,5 +7,5 @@ export const crashReportParser = {
         const issues = getIssues({ lines }, [generalRules, crashReportRules])
 
         return { issues }
-    }
+    },
 }

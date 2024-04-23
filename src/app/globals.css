@@ -16,23 +16,23 @@ body {
 }
 
 .error {
-    color: #F56565;
+    color: #f56565;
 }
 
 .warning {
-    color: #FAF089;
+    color: #faf089;
 }
 
 .info {
-    color: #CBD5E0;
+    color: #cbd5e0;
 }
 
 .repeat {
-    color: rgba(128, 128, 128, 0.5)
+    color: rgba(128, 128, 128, 0.5);
 }
 
 .unknown {
-    color: #CBD5E0;
+    color: #cbd5e0;
 }
 
 :target {

@@ -6,5 +6,5 @@ export const extendedMultimcLogParser = {
         const issues = getIssues({ lines }, [generalRules])
 
         return { issues }
-    }
+    },
 }

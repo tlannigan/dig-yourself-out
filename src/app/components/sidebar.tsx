@@ -11,33 +11,24 @@ export type SidebarProps = {
     file: any
 }
 
-export default function Sidebar({
-    fileBrowserHandler,
-    disclosure,
-    file
-}: SidebarProps) {
+export default function Sidebar({ fileBrowserHandler, disclosure, file }: SidebarProps) {
     const { isOpen, onToggle } = useDisclosure()
 
     return (
         <Box
             id="sidebar"
             flexShrink={!isOpen ? 0 : 1}
-            boxSize='sm'
-            maxW='100%'
-            h='100dvh'
+            boxSize="sm"
+            maxW="100%"
+            h="100dvh"
             pb={4}
             overflowY={!isOpen ? 'auto' : 'visible'}
-            borderRadius='lg'
-            position='sticky'
+            borderRadius="lg"
+            position="sticky"
             top={0}
-            alignSelf='flex-start'
+            alignSelf="flex-start"
             style={{ scrollbarWidth: 'none' }}>
-
-            <Collapse
-                animateOpacity
-                in={!isOpen}
-                style={{ zIndex: 10 }}>
-
+            <Collapse animateOpacity in={!isOpen} style={{ zIndex: 10 }}>
                 <Accordion defaultIndex={[0, 1, 2]} allowMultiple>
                     <FileActions fileBrowserHandler={fileBrowserHandler} disclosure={disclosure} />
                     <FileDetails file={file} />

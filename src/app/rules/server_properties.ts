@@ -1,7 +1,7 @@
-import { RuleCategory } from './general';
+import { RuleCategory } from './general'
 
 export const serverPropertiesRules: RuleCategory = {
-    title: "Server Properties",
+    title: 'Server Properties',
     versionChecks: [],
-    rules: []
+    rules: [],
 }

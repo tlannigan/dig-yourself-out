@@ -1,4 +1,18 @@
-import { Button, Input, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, UnorderedList, UseDisclosureProps } from '@chakra-ui/react'
+import {
+    Button,
+    Input,
+    ListItem,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    Text,
+    UnorderedList,
+    UseDisclosureProps,
+} from '@chakra-ui/react'
 import { KeyboardEvent, useRef } from 'react'
 
 export type UploadRemoteFileModalProps = {
@@ -7,11 +21,7 @@ export type UploadRemoteFileModalProps = {
     isLoading: boolean
 }
 
-export default function UploadRemoteFileModal({
-    setRemoteFileUrl,
-    disclosure,
-    isLoading
-}: UploadRemoteFileModalProps) {
+export default function UploadRemoteFileModal({ setRemoteFileUrl, disclosure, isLoading }: UploadRemoteFileModalProps) {
     const { isOpen, onOpen, onClose } = disclosure
     const initialRef = useRef(null)
 
@@ -30,18 +40,10 @@ export default function UploadRemoteFileModal({
     }
 
     return (
-        <Modal
-            initialFocusRef={initialRef}
-            isOpen={isOpen!}
-            onClose={onClose!}
-            motionPreset='slideInBottom'
-            isCentered>
-
+        <Modal initialFocusRef={initialRef} isOpen={isOpen!} onClose={onClose!} motionPreset="slideInBottom" isCentered>
             <ModalOverlay style={{ zIndex: 20 }}>
-                <ModalContent bg='#222020' color='white' fontFamily='Fira Mono'>
-                    <ModalHeader>
-                        Upload file from URL
-                    </ModalHeader>
+                <ModalContent bg="#222020" color="white" fontFamily="Fira Mono">
+                    <ModalHeader>Upload file from URL</ModalHeader>
 
                     <ModalCloseButton />
 
@@ -56,15 +58,20 @@ export default function UploadRemoteFileModal({
                     </ModalBody>
 
                     <ModalFooter>
-                        <Input ref={initialRef} id='file-fetch-url' type='url' placeholder='https://gnomebot.dev/...' onKeyDown={onKeyPress} />
+                        <Input
+                            ref={initialRef}
+                            id="file-fetch-url"
+                            type="url"
+                            placeholder="https://gnomebot.dev/..."
+                            onKeyDown={onKeyPress}
+                        />
                         <Button
-                            id='fetch-remote-file-button'
+                            id="fetch-remote-file-button"
                             isLoading={isLoading}
-                            colorScheme='green'
-                            color='white'
+                            colorScheme="green"
+                            color="white"
                             onClick={fetchFileFromUrl}
                             ml={4}>
-
                             Upload
                         </Button>
                     </ModalFooter>

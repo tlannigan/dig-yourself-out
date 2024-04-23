@@ -25,35 +25,37 @@ export default function getMinecraftFileType(lines: string[], name: string) {
 export function isStandardLog(lines: string[]) {
     // Example first line in a typical Fabric log:
     // "Loading Minecraft 1.20.1 with Fabric Loader 0.15.9"
-    const isFabricLog = lines.find(line => {
+    const isFabricLog = lines.find((line) => {
         const lowercaseLine = line.toLowerCase()
         return lowercaseLine.includes('loading minecraft ') && lowercaseLine.includes('with fabric loader')
     })
 
     // Example first line in a typical modern Forge log:
     // "ModLauncher running: args [--username, Tirsty_, --version, forge-47.2.21, etc"
-    const isForgeModernLog = lines.find(line => line.toLowerCase().includes('modlauncher running: args'))
+    const isForgeModernLog = lines.find((line) => line.toLowerCase().includes('modlauncher running: args'))
 
     // Example first line in a typical legacy Forge log
     // "Loading tweak class name cpw.mods.fml.common.launcher.FMLTweaker"
-    const isForgeLegacyLog = lines.find(line => line.toLowerCase().includes('forge mod loader version '))
+    const isForgeLegacyLog = lines.find((line) => line.toLowerCase().includes('forge mod loader version '))
 
     return isFabricLog || isForgeModernLog || isForgeLegacyLog
 }
 
 export function isExtendedMultimcLog(lines: string[]) {
-    return lines.find(line => {
+    return lines.find((line) => {
         const lowerCaseLine = line.toLowerCase()
-        return lowerCaseLine.includes('prism launcher version') ||
+        return (
+            lowerCaseLine.includes('prism launcher version') ||
             lowerCaseLine.includes('polymc version') ||
             lowerCaseLine.includes('multimc version')
+        )
     })
 }
 
 export function isCrashReport(lines: string[], name: string) {
     // Matches files named crash-1970-12-31_23.59.59-[client|server].txt
     const hasCrashReportFileName = name.startsWith('crash-') && name.endsWith('.txt')
-    const firstLineSaysCrashReport = lines.slice(0, 5).find(l => l.toLowerCase().includes('minecraft crash report'))
+    const firstLineSaysCrashReport = lines.slice(0, 5).find((l) => l.toLowerCase().includes('minecraft crash report'))
     return hasCrashReportFileName || firstLineSaysCrashReport
 }
 

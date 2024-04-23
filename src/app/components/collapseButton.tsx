@@ -9,25 +9,32 @@ export type CollapseButtonProps = {
 export default function CollapseButton({ onToggle, isOpen }: CollapseButtonProps) {
     if (!isOpen) {
         return (
-            <Flex justifyContent='end'>
+            <Flex justifyContent="end">
                 <Button
                     onClick={onToggle}
-                    variant='ghost'
+                    variant="ghost"
                     leftIcon={<DoubleArrow style={{ transform: 'rotate(180deg)' }} />}
-                    size='md'
+                    size="md"
                     my={4}
-                    textColor='green.500'
+                    textColor="green.500"
                     _hover={{ bg: '#333030' }}>
-
                     Collapse
-
                 </Button>
             </Flex>
         )
     } else {
         return (
             <Flex>
-                <IconButton aria-label='Open sidebar' onClick={onToggle} icon={<DoubleArrow />} size='lg' my={4} textColor='green.500' bg='#333030' _hover={{ bg: '#3E3C3C' }} />
+                <IconButton
+                    aria-label="Open sidebar"
+                    onClick={onToggle}
+                    icon={<DoubleArrow />}
+                    size="lg"
+                    my={4}
+                    textColor="green.500"
+                    bg="#333030"
+                    _hover={{ bg: '#3E3C3C' }}
+                />
             </Flex>
         )
     }
