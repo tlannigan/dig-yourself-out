@@ -52,6 +52,7 @@ export default function UploadRemoteFileModal({ setRemoteFileUrl, disclosure, is
                         <UnorderedList>
                             <ListItem>gnomebot.dev</ListItem>
                             <ListItem>pastebin.com</ListItem>
+                            <ListItem>paste.ee</ListItem>
                             <ListItem>gist.githubusercontent.com</ListItem>
                             <ListItem>mclo.gs</ListItem>
                         </UnorderedList>
