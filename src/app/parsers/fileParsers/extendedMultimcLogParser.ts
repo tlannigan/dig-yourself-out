@@ -97,22 +97,35 @@ export function getLegacyArgs(argsLine: string) {
 }
 
 export function getSystemInfo(lines: string[]) {
-    const forgeModernInfoLine = lines.find((l) => l.toLowerCase().includes('starting: java version'))
+    const startOfStandardLog = lines.findIndex((l) => {
+        return l.toLowerCase().includes('loading minecraft ') && l.toLowerCase().includes('with fabric loader ') ||
+            l.toLowerCase().includes('modlauncher running: args') ||
+            l.toLowerCase().includes('forge mod loader version')
+    })
+
+    if (startOfStandardLog === -1) {
+        return {}
+    }
+
+    const firstFewLines = lines.slice(startOfStandardLog, startOfStandardLog + 10)
+    const standardLogLines = lines.slice(startOfStandardLog)
+
+    const forgeModernInfoLine = firstFewLines.find((l) => l.toLowerCase().includes('starting: java version'))
     if (forgeModernInfoLine) {
         return {
             ...getModernSystemInfo(forgeModernInfoLine),
         }
     }
 
-    const forgeLegacyInfoLine = lines.find((l) => l.toLowerCase().includes('java is'))
+    const forgeLegacyInfoLine = firstFewLines.find((l) => l.toLowerCase().includes('java is'))
     if (forgeLegacyInfoLine) {
         return {
-            memoryFlags: getMemoryFlags(lines),
+            memoryFlags: getMemoryFlags(standardLogLines),
             ...getLegacySystemInfo(forgeLegacyInfoLine),
         }
     }
 
-    const fabricInfoLine = lines.find((l) => l.toLowerCase().includes('    - java'))
+    const fabricInfoLine = firstFewLines.find((l) => l.toLowerCase().includes('    - java'))
     if (fabricInfoLine) {
         return { java: fabricInfoLine.split('    - java ')[1].trim() }
     }
