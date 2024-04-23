@@ -1,5 +1,6 @@
 import { ReactElement } from 'react'
 import Issue from '../components/issue'
+import { Equality } from '../enums'
 
 // Returns an array of issue components for each matched rule
 export default function getIssues(fileInfo: any, ruleCategories: any, enableDebugging = false) {
@@ -47,7 +48,7 @@ function doesRuleApplyToFile(fileInfo: any, rule: any, enableDebugging: boolean)
             return false
         }
 
-        if (check.equality === 'range') {
+        if (check.equality === Equality.RANGE) {
             const ranges = check.version.split('...')
             const startInclusive = ranges[0]
             const endExclusive = ranges[1]
@@ -65,17 +66,17 @@ function doesRuleApplyToFile(fileInfo: any, rule: any, enableDebugging: boolean)
     
             if (enableDebugging) console.log(`${check.type + ': ' + fileInfo[check.type]} ${check.equality} ${check.version} Result: ${comparison}`)
     
-            if (check.equality === 'eq' && comparison !== 0) {
+            if (check.equality === Equality.EQ && comparison !== 0) {
                 return false
-            } else if (check.equality === 'not' && comparison === 0) {
+            } else if (check.equality === Equality.NOT && comparison === 0) {
                 return false
-            } else if (check.equality === 'gte' && comparison < 0) {
+            } else if (check.equality === Equality.GTE && comparison < 0) {
                 return false
-            } else if (check.equality === 'gt' && comparison <= 0) {
+            } else if (check.equality === Equality.GT && comparison <= 0) {
                 return false
-            } else if (check.equality === 'lte' && comparison > 0) {
+            } else if (check.equality === Equality.LTE && comparison > 0) {
                 return false
-            } else if (check.equality === 'lt' && comparison >= 0) {
+            } else if (check.equality === Equality.LT && comparison >= 0) {
                 return false
             }
         }
@@ -113,7 +114,7 @@ function doesRuleApplyToFile(fileInfo: any, rule: any, enableDebugging: boolean)
  * @copyright by Jon Papaioannou (["john", "papaioannou"].join(".") + "@gmail.com")
  * @license This function is in the public domain. Do what you want with it, no strings attached.
  */
-function versionCompare(v1: string, v2: string, options: any) {
+function versionCompare(v1: string, v2: string, options: any): number {
     var lexicographical: boolean = options && options.lexicographical,
         zeroExtend: boolean = options && options.zeroExtend,
         v1parts: any[] = v1.split('.'),

@@ -21,3 +21,13 @@ export enum Launcher {
     GDLAUNCHER,
     UNKNOWN
 }
+
+export enum Equality {
+    EQ,
+    NOT,
+    GTE,
+    GT,
+    LTE,
+    LT,
+    RANGE
+}

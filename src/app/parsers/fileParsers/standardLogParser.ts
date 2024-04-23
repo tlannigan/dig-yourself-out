@@ -1,7 +1,7 @@
 import getIssues from '../issueParser'
-import generalRules from '../../rules/general.json'
-import forgeRules from '../../rules/forge.json'
-import fabricRules from '../../rules/fabric.json'
+import { generalRules } from '../../rules/general'
+import { forgeRules } from '../../rules/forge'
+import { fabricRules } from '../../rules/fabric'
 import getLauncherName from '../launcherParser'
 
 // Parser for `latest.log` or `debug.log` files commonly

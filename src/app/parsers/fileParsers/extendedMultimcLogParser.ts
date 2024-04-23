@@ -1,5 +1,5 @@
 import getIssues from '../issueParser'
-import generalRules from '../../rules/general.json'
+import { generalRules } from '../../rules/general'
 
 export const extendedMultimcLogParser = {
     parse: (lines: string[]) => {
