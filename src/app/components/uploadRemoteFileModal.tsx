@@ -1,5 +1,5 @@
 import { Button, Input, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, UnorderedList, UseDisclosureProps } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { KeyboardEvent, useRef } from 'react'
 
 export type UploadRemoteFileModalProps = {
     setRemoteFileUrl: (url: string) => void
@@ -18,6 +18,15 @@ export default function UploadRemoteFileModal({
     const fetchFileFromUrl = () => {
         const urlInput = document.getElementById('file-fetch-url') as HTMLInputElement
         if (urlInput && urlInput.value) setRemoteFileUrl(urlInput.value)
+    }
+
+    // Click upload button when pressing Enter in text input
+    const onKeyPress = (e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            const uploadButton = document.getElementById('fetch-remote-file-button') as HTMLElement
+            if (uploadButton) uploadButton.click()
+        }
     }
 
     return (
@@ -47,8 +56,9 @@ export default function UploadRemoteFileModal({
                     </ModalBody>
 
                     <ModalFooter>
-                        <Input ref={initialRef} id='file-fetch-url' placeholder='https://gnomebot.dev/...' />
+                        <Input ref={initialRef} id='file-fetch-url' type='url' placeholder='https://gnomebot.dev/...' onKeyDown={onKeyPress} />
                         <Button
+                            id='fetch-remote-file-button'
                             isLoading={isLoading}
                             colorScheme='green'
                             color='white'

@@ -2,6 +2,7 @@ import { Button, Flex, HStack, Input, Text, UseDisclosureProps } from '@chakra-u
 import { ChangeEventHandler, DragEventHandler, Dispatch, SetStateAction } from 'react'
 import LoadingOverlay from './loadingOverlay'
 import UploadRemoteFileModal from './uploadRemoteFileModal'
+import { FileUploadOutlined } from '@mui/icons-material'
 
 export type UploadCallToActionProps = {
     handlers: FileHandlers
@@ -52,6 +53,7 @@ export default function UploadCallToAction({
 
             <HStack mx='auto'>
                 <Text>Drag your files here</Text>
+                <FileUploadOutlined fontSize='large' />
             </HStack>
             
             <Text mx="auto">or</Text>
