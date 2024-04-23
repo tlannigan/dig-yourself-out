@@ -65,6 +65,7 @@ export default function InspectorContainer() {
                 }
             } finally {
                 setIsLoading(false)
+                setRemoteFileUrl('')
                 onClose() // Close modal
             }
         }

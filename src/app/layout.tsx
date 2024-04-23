@@ -6,6 +6,16 @@ import { fonts } from './fonts'
 export const metadata: Metadata = {
     title: 'Dig Yourself Out',
     description: 'Diagnose modded Minecraft problems',
+    keywords: ['Minecraft', 'modded'],
+    creator: 'tirsty',
+    openGraph: {
+        title: 'Dig Yourself Out',
+        description: 'Diagnose modded Minecraft problems',
+        url: 'https://digyourselfout.app',
+        siteName: 'Dig Yourself Out',
+        type: 'website',
+        locale: 'en_US'
+    }
 }
 
 export default function RootLayout({
