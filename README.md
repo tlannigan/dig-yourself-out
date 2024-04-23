@@ -56,7 +56,7 @@ const rule: Rule = {
 ## Usage
 Drag your Minecraft logs, crash reports, and Java crash dumps into the site to have them analyzed.
 
-## Currently supported files are:
+### Currently supported files are:
 - /logs/latest.log
 - /logs/debug.log
 - /crash-reports/crash-XXX.txt
@@ -64,7 +64,7 @@ Drag your Minecraft logs, crash reports, and Java crash dumps into the site to h
 - hs_err_pidXXX.log
 - server.properties
 
-## Currently caught issues:
+### Currently caught issues:
 - Missing dependencies
 - Mixin errors
 - Wrong Java version
