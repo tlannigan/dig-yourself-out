@@ -1,0 +1,65 @@
+import { Button, Input, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, UnorderedList, UseDisclosureProps } from '@chakra-ui/react'
+import { useRef } from 'react'
+
+export type UploadRemoteFileModalProps = {
+    setRemoteFileUrl: (url: string) => void
+    disclosure: UseDisclosureProps
+    isLoading: boolean
+}
+
+export default function UploadRemoteFileModal({
+    setRemoteFileUrl,
+    disclosure,
+    isLoading
+}: UploadRemoteFileModalProps) {
+    const { isOpen, onOpen, onClose } = disclosure
+    const initialRef = useRef(null)
+
+    const fetchFileFromUrl = () => {
+        const urlInput = document.getElementById('file-fetch-url') as HTMLInputElement
+        if (urlInput && urlInput.value) setRemoteFileUrl(urlInput.value)
+    }
+
+    return (
+        <Modal
+            initialFocusRef={initialRef}
+            isOpen={isOpen!}
+            onClose={onClose!}
+            motionPreset='slideInBottom'
+            isCentered>
+
+            <ModalOverlay>
+                <ModalContent bg='#222020' color='white' fontFamily='Fira Mono'>
+                    <ModalHeader>
+                        Upload file from URL
+                    </ModalHeader>
+
+                    <ModalCloseButton />
+
+                    <ModalBody>
+                        <Text>Supported domains:</Text>
+                        <UnorderedList>
+                            <ListItem>gnomebot.dev</ListItem>
+                            <ListItem>pastebin.com</ListItem>
+                            <ListItem>gist.githubusercontent.com</ListItem>
+                            <ListItem>mclo.gs</ListItem>
+                        </UnorderedList>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Input ref={initialRef} id='file-fetch-url' placeholder='https://gnomebot.dev/...' />
+                        <Button
+                            isLoading={isLoading}
+                            colorScheme='green'
+                            color='white'
+                            onClick={fetchFileFromUrl}
+                            ml={4}>
+
+                            Upload
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </ModalOverlay>
+        </Modal>
+    )
+}

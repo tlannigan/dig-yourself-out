@@ -1,0 +1,11 @@
+{
+    "title": "Fabric",
+    "versionChecks": [
+        {
+            "type": "fabricVersion",
+            "equality": "gt",
+            "version": "0.0.0"
+        }
+    ],
+    "rules": []
+}
