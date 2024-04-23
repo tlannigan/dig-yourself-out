@@ -27,7 +27,7 @@ export default function FileDetails({ file }: FileDetailsProps) {
                     <Tr>
                         <Td>{rowName}:</Td>
                         <Td>
-                            <Tooltip isDisabled={isDisabled} label={data} fontSize="lg" bg="green.500">
+                            <Tooltip isDisabled={isDisabled} label={data} fontSize="md" bg="green.500">
                                 {truncateLine(data, maxCharacterLength)}
                             </Tooltip>
                         </Td>

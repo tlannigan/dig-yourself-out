@@ -6,9 +6,12 @@ export default function Navbar() {
     return (
         <Box maxW="100dvw" bg="green.500" borderRadius="lg" px={4} py={2}>
             <Flex justify="space-between">
-                <Text fontSize={24} fontWeight={700}>
-                    Dig Yourself Out
-                </Text>
+                <HStack fontSize={24} columnGap={4}>
+                    <Text fontWeight={700}>
+                        Dig Yourself Out
+                    </Text>
+                    <Text color='rgba(255, 255, 255, 0.75)'>Alpha</Text>
+                </HStack>
                 <HStack>
                     <a
                         href="https://discord.gg/PFVJgTWAkX"
