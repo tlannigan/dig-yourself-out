@@ -30,6 +30,9 @@ function getRawFileUrl(fileUrl: string): string {
     } else if (url.startsWith('https://mclo.gs/')) {
         // MC Logs pastebin
         return `https://api.mclo.gs/1/raw/${fileQueryId}`
+    } else if (url.startsWith('https://paste.ee/p/')) {
+        // Pastee pastebin
+        return `https://paste.ee/r/${fileQueryId}`
     } else if (isUrlSupportedDomain(url)) {
         return url
     }
@@ -47,6 +50,7 @@ function isUrlSupportedDomain(url: string): boolean {
         url.startsWith('https://gnomebot.dev/paste/') ||
         url.startsWith('https://pastebin.com/') ||
         url.startsWith('https://mclo.gs/') ||
+        url.startsWith('https://paste.ee/r/') ||
         url.startsWith('https://gist.githubusercontent.com/')
     )
 }
