@@ -141,5 +141,20 @@ export const forgeRules: RuleCategory = {
                 },
             ],
         },
+        {
+            level: 'error',
+            title: 'Duplicate mods detected',
+            description: 'Some mods can contain code from other mods and they can conflict. Remove one of the duplicate mods listed.',
+            candidates: ['Found duplicate mods:'],
+            onlyAppearsOnce: true,
+            onlyVersionChecks: false,
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.GTE,
+                    version: '1.16.5',
+                },
+            ],
+        },
     ],
 }
