@@ -4,7 +4,7 @@ import GithubIcon from './githubIcon'
 
 export default function Navbar() {
     return (
-        <Box maxW="100dvw" bg="green.500" borderRadius="lg" px={4} py={2}>
+        <Box as='header' maxW="100dvw" bg="green.500" borderRadius="lg" px={4} py={2}>
             <Flex justify="space-between">
                 <HStack fontSize={24} columnGap={4}>
                     <Text fontWeight={700}>

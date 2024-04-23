@@ -36,6 +36,7 @@ export default function UploadCallToAction({
     return (
         <Flex
             id="dropzone"
+            data-testid="dropzone"
             onDrop={handlers.dropHandler}
             onDragOver={handlers.dragOverHandler}
             onDragLeave={handlers.dragLeaveHandler}
@@ -46,6 +47,7 @@ export default function UploadCallToAction({
             fontSize={24}
             color="white"
             flexGrow={1}>
+
             <LoadingOverlay isLoading={isLoading} isParsing={isParsing} />
 
             <HStack mx="auto">
