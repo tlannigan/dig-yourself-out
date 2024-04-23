@@ -172,5 +172,14 @@ export const generalRules: RuleCategory = {
             onlyVersionChecks: false,
             versionChecks: [],
         },
+        {
+            level: 'warning',
+            title: 'Server running in offline mode',
+            description: 'Offline servers can cause problems with mods that rely on player IDs. Switch to online mode before continuing to debug.',
+            candidates: ['SERVER IS RUNNING IN OFFLINE/INSECURE MODE'],
+            onlyAppearsOnce: true,
+            onlyVersionChecks: false,
+            versionChecks: [],
+        },
     ],
 }
