@@ -88,6 +88,46 @@ export const generalRules: RuleCategory = {
         },
         {
             level: "error",
+            title: "Java 17 required",
+            description: "Minecraft 1.18+ requires Java 17.",
+            candidates: [],
+            onlyAppearsOnce: true,
+            onlyVersionChecks: true,
+            versionChecks: [
+                {
+                    type: "mcVersion",
+                    equality: Equality.GTE,
+                    version: "1.18.0"
+                },
+                {
+                    type: "java",
+                    equality: Equality.RANGE,
+                    version: "18.0.0...21.0.0",
+                }
+            ]
+        },
+        {
+            level: "error",
+            title: "Java 17 required",
+            description: "Minecraft 1.18+ requires Java 17.",
+            candidates: [],
+            onlyAppearsOnce: true,
+            onlyVersionChecks: true,
+            versionChecks: [
+                {
+                    type: "mcVersion",
+                    equality: Equality.GTE,
+                    version: "1.18.0"
+                },
+                {
+                    type: "java",
+                    equality: Equality.GTE,
+                    version: "22.0.0",
+                }
+            ]
+        },
+        {
+            level: "error",
             title: "Failed to bind to port",
             description: "A process is already using the assigned port. Close any other servers or restart your computer.",
             candidates: ["**** FAILED TO BIND TO PORT!"],
