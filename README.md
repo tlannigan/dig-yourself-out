@@ -23,25 +23,30 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Adding rules
 If you want to add new rules to be detected in files, add them in the appropriate file in `/src/rules`. Here is an example rule:
 
-```json
-{
-    "level": "error|warning|info",
-    "title": "Rule title",
-    "description": "Describe the issue and/or solution",
-    "candidates": [
+```ts
+enum Equality = { EQ, NOT, GTE, GT, LTE, LT, RANGE }
+
+const rule: Rule = {
+    level: "error|warning|info",
+    title: "Rule title",
+    description: "Describe the issue and/or solution",
+    candidates: [
       "String you want to find in a file 1",
       "String you want to find in a file 2",
     ],
-    "onlyAppearsOnce": true,
-    "versionChecks": [
+    onlyAppearsOnce: boolean, // If this rule should only find the first match
+    onlyVersionChecks: boolean, // If this rule should only check versions
+    versionChecks: [
+        // Greater than or equal to version check
         {
             "type": "mcVersion|java|forgeVersion|fabricVersion|neoForgeVersion",
-            "equality": "eq|not|gte|gt|lte|lt",
+            "equality": Equality.GTE,
             "version": "1.0.0"
         },
+        // Range version check (inclusive start, exclusive end)
         {
             "type": "mcVersion",
-            "equality": "range",
+            "equality": Equality.RANGE,
             "version": "1.7.10...1.12.2"
         }
     ]
