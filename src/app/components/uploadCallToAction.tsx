@@ -2,15 +2,14 @@ import { Button, Flex, HStack, Input, Text, UseDisclosureProps } from '@chakra-u
 import { ChangeEventHandler, DragEventHandler, Dispatch, SetStateAction } from 'react'
 import LoadingOverlay from './loadingOverlay'
 import UploadRemoteFileModal from './uploadRemoteFileModal'
-import { FileUploadOutlined } from '@mui/icons-material'
+import { FileDownloadOutlined } from '@mui/icons-material'
 
 export type UploadCallToActionProps = {
     handlers: FileHandlers
-    setUploadedFile: (prevFile: File) => void
     setRemoteFileUrl: Dispatch<SetStateAction<string>>
-    setIsLoading: (isLoading: boolean) => void
     disclosure: UseDisclosureProps
     isLoading: boolean
+    isParsing: boolean
 }
 
 export type FileHandlers = {
@@ -22,11 +21,10 @@ export type FileHandlers = {
 
 export default function UploadCallToAction({
     handlers,
-    setUploadedFile,
     setRemoteFileUrl,
-    setIsLoading,
     disclosure,
-    isLoading
+    isLoading,
+    isParsing
 }: UploadCallToActionProps) {
     const { isOpen, onOpen, onClose } = disclosure
     
@@ -49,21 +47,21 @@ export default function UploadCallToAction({
             color='white'
             flexGrow={1}>
             
-            <LoadingOverlay isLoading={isLoading} />
+            <LoadingOverlay isLoading={isLoading} isParsing={isParsing} />
 
             <HStack mx='auto'>
                 <Text>Drag your files here</Text>
-                <FileUploadOutlined fontSize='large' />
+                <FileDownloadOutlined fontSize='large' />
             </HStack>
             
             <Text mx="auto">or</Text>
 
             <HStack mx="auto" mt={4}>
-                <Button onClick={openFileInput} size="lg" colorScheme="green" mr={4}>
+                <Button onClick={openFileInput} tabIndex={3} size="lg" colorScheme="green" mr={4}>
                     Browse your PC
                 </Button>
                 <Input type="file" accept=".txt, .log" onChange={handlers.fileBrowserHandler} id="file-input" display="none" />
-                <Button size="lg" colorScheme="green" onClick={onOpen}>
+                <Button onClick={onOpen} tabIndex={4} size="lg" colorScheme="green">
                     Upload from URL
                 </Button>
             </HStack>

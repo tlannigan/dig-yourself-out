@@ -9,10 +9,9 @@ import { Dispatch, SetStateAction } from 'react'
 export type InspectorProps = {
     handlers: FileHandlers
     setRemoteFileUrl: Dispatch<SetStateAction<string>>
-    setUploadedFile: (prevFile: File) => void,
-    setIsLoading: (isLoading: boolean) => void
     disclosure: UseDisclosureProps
     isLoading: boolean
+    isParsing: boolean
     file: any
 }
 
@@ -21,6 +20,7 @@ export default function Inspector({
     setRemoteFileUrl,
     disclosure,
     isLoading,
+    isParsing,
     file
 }: InspectorProps) {
     return (
@@ -32,7 +32,7 @@ export default function Inspector({
             onDragOver={handlers.dragOverHandler}
             onDragLeave={handlers.dragLeaveHandler}>
 
-            <LoadingOverlay isLoading={isLoading} />
+            <LoadingOverlay isLoading={isLoading} isParsing={isParsing} />
 
             <Sidebar
                 fileBrowserHandler={handlers.fileBrowserHandler}

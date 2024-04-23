@@ -37,7 +37,7 @@ export default function UploadRemoteFileModal({
             motionPreset='slideInBottom'
             isCentered>
 
-            <ModalOverlay>
+            <ModalOverlay style={{ zIndex: 20 }}>
                 <ModalContent bg='#222020' color='white' fontFamily='Fira Mono'>
                     <ModalHeader>
                         Upload file from URL

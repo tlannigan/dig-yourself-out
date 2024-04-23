@@ -1,47 +1,74 @@
-import { ChangeEventHandler, DragEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, DragEventHandler, useCallback, useEffect, useState } from 'react';
+import { getFileInfo } from '../parsers/parser';
+import { useToast, useDisclosure } from '@chakra-ui/react';
+import fetchRemoteFile from '../remoteFileHandler';
 import UploadCallToAction from './uploadCallToAction';
 import Inspector from './inspector';
-import { getFileInfo } from '../parsers/parser';
-import fetchRemoteFile from '../remoteFileHandler';
-import { useDisclosure } from '@chakra-ui/react';
 
 export default function InspectorContainer() {
     const [uploadedFile, setUploadedFile] = useState<File>()
     const [remoteFileUrl, setRemoteFileUrl] = useState<string>('')
-    const [file, setFile] = useState()
+    const [file, setFile] = useState() // Parsed file info
+
+    // Handles showing loading overlay while asynchronous code executes
     const [isLoading, setIsLoading] = useState(false)
+    const [isParsing, setIsParsing] = useState(false)
 
     // UploadRemoteFileModal controls
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const toast = useToast()
+    const showToast = useCallback((errorMessage: string) => {
+        toast({
+            title: 'Error',
+            description: errorMessage,
+            status: 'error',
+            duration: 5000,
+            isClosable: true
+        })
+    }, [toast])
+
     // Parses file information
     useEffect(() => {
         async function getParsedFile() {
-            setIsLoading(true)
-            const fileInfo = await getFileInfo(uploadedFile)
-            setIsLoading(false)
-            setFile(fileInfo)
+            try {
+                setIsParsing(true)
+                const fileInfo = await getFileInfo(uploadedFile)
+                setFile(fileInfo)
+            } catch (err) {
+                if (err instanceof Error) {
+                    showToast(err.message)
+                }
+            } finally {
+                setIsParsing(false)
+            }
         }
         if (uploadedFile) {
             getParsedFile()
         }
-    }, [uploadedFile])
+    }, [uploadedFile, showToast])
 
     // Fetches remote files
     useEffect(() => {
         async function getRemoteFile() {
-            setIsLoading(true)
-            const response = await fetchRemoteFile(remoteFileUrl)
-            setIsLoading(false)
-            onClose()
-            const file = new File([new Blob([response])], 'Remote file', { type: 'text/plain', lastModified: 0 })
-            setUploadedFile(file)
-            setRemoteFileUrl('')
+            try {
+                setIsLoading(true)
+                const response = await fetchRemoteFile(remoteFileUrl)
+                const file = createFileFromText(response)
+                setUploadedFile(file)
+            } catch (err) {
+                if (err instanceof Error) {
+                    showToast(err.message)
+                }
+            } finally {
+                setIsLoading(false)
+                onClose() // Close modal
+            }
         }
         if (remoteFileUrl !== '') {
             getRemoteFile()
         }
-    }, [remoteFileUrl, onClose])
+    }, [remoteFileUrl, showToast, onClose])
 
     const dropHandler: DragEventHandler = (event: any) => {
         event.preventDefault()
@@ -87,9 +114,8 @@ export default function InspectorContainer() {
                 handlers={{ dropHandler, dragOverHandler, dragLeaveHandler, fileBrowserHandler }}
                 disclosure={{ isOpen, onOpen, onClose }}
                 setRemoteFileUrl={setRemoteFileUrl}
-                setUploadedFile={setUploadedFile}
-                setIsLoading={setIsLoading}
                 isLoading={isLoading}
+                isParsing={isParsing}
                 file={file} />
         )
     } else {
@@ -98,9 +124,12 @@ export default function InspectorContainer() {
                 handlers={{ dropHandler, dragOverHandler, dragLeaveHandler, fileBrowserHandler }}
                 disclosure={{ isOpen, onOpen, onClose }}
                 setRemoteFileUrl={setRemoteFileUrl}
-                setUploadedFile={setUploadedFile}
-                setIsLoading={setIsLoading}
-                isLoading={isLoading} />
+                isLoading={isLoading}
+                isParsing={isParsing} />
         )
     }
+}
+
+export function createFileFromText(text: string) {
+    return new File([new Blob([text])], 'Remote file', { type: 'text/plain', lastModified: 0 })
 }
