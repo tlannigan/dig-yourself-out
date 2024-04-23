@@ -56,7 +56,19 @@ const rule: Rule = {
 ## Usage
 Drag your Minecraft logs, crash reports, and Java crash dumps into the site to have them analyzed.
 
-Currently supported files are:
-- `latest` and `debug` logs from `/logs`
-- crash reports from `/crash-reports`
-- `hs_err_pidXXX.log` Java HotSpot crash dumps
+## Currently supported files are:
+- /logs/latest.log
+- /logs/debug.log
+- /crash-reports/crash-XXX.txt
+- launcher_log.txt
+- hs_err_pidXXX.log
+- server.properties
+
+## Currently caught issues:
+- Missing dependencies
+- Mixin errors
+- Wrong Java version
+- Corrupted config files
+- Server port binding failure
+- AMD graphics driver crashes
+- Intel graphics driver crashes
