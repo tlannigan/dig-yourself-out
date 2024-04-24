@@ -36,6 +36,7 @@ export default function InspectorContainer() {
 
     // Parses file information
     useEffect(() => {
+        // Fully removes # from window location
         const removeHash = () => {
             window.location.hash = ''
             router.replace('/')
@@ -44,6 +45,7 @@ export default function InspectorContainer() {
         async function getParsedFile() {
             try {
                 setIsParsing(true)
+                setFile(undefined)
                 const fileInfo = await getFileInfo(uploadedFile)
                 setFile(fileInfo)
             } catch (err) {
@@ -65,6 +67,7 @@ export default function InspectorContainer() {
         async function getRemoteFile() {
             try {
                 setIsLoading(true)
+                setFile(undefined)
                 const response = await fetchRemoteFile(remoteFileUrl)
                 const file = createFileFromText(response)
                 setUploadedFile(file)
@@ -87,7 +90,7 @@ export default function InspectorContainer() {
         event.preventDefault()
 
         if (event.dataTransfer && event.dataTransfer.items && event.dataTransfer.items.length === 1) {
-            ;[...event.dataTransfer.items].forEach((item) => {
+            [...event.dataTransfer.items].forEach((item) => {
                 if (item.kind === 'file') {
                     setUploadedFile(item.getAsFile())
                 }
