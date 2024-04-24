@@ -4,8 +4,11 @@ import { useToast, useDisclosure } from '@chakra-ui/react'
 import fetchRemoteFile from '../remoteFileHandler'
 import UploadCallToAction from './uploadCallToAction'
 import Inspector from './inspector'
+import { useRouter } from 'next/navigation'
 
 export default function InspectorContainer() {
+    const router = useRouter()
+
     const [uploadedFile, setUploadedFile] = useState<File>()
     const [remoteFileUrl, setRemoteFileUrl] = useState<string>('')
     const [file, setFile] = useState() // Parsed file info
@@ -33,6 +36,11 @@ export default function InspectorContainer() {
 
     // Parses file information
     useEffect(() => {
+        const removeHash = () => {
+            window.location.hash = ''
+            router.replace('/')
+        }
+
         async function getParsedFile() {
             try {
                 setIsParsing(true)
@@ -44,12 +52,13 @@ export default function InspectorContainer() {
                 }
             } finally {
                 setIsParsing(false)
+                removeHash()
             }
         }
         if (uploadedFile) {
             getParsedFile()
         }
-    }, [uploadedFile, showToast])
+    }, [uploadedFile, showToast, router])
 
     // Fetches remote files
     useEffect(() => {

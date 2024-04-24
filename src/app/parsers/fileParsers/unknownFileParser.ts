@@ -1,5 +1,5 @@
 export const unknownFileParser = {
-    parse: () => {
+    parse: (lines: string[]) => {
         return { issues: [] }
     },
 }
