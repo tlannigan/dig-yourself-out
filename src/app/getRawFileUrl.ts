@@ -1,19 +1,3 @@
-'use server'
-
-export default async function fetchRemoteFile(url: string) {
-    try {
-        const rawFileUrl = getRawFileUrl(url)
-        const response = await fetch(rawFileUrl)
-        return await response.text()
-    } catch (err) {
-        console.error(err)
-        if (err instanceof Error) {
-            throw new Error(err.message)
-        }
-        return ''
-    }
-}
-
 export function getRawFileUrl(fileUrl: string): string {
     const url = fileUrl.trim()
     const fileId = getUrlPathId(url)
@@ -30,6 +14,8 @@ export function getRawFileUrl(fileUrl: string): string {
     } else if (url.startsWith('https://mclo.gs/')) {
         // MC Logs pastebin
         return `https://api.mclo.gs/1/raw/${fileId}`
+    } else if (url.startsWith('https://paste.gg/p/') && url.endsWith('/raw')) {
+        return url
     } else if (url.startsWith('https://paste.ee/p/')) {
         // Pastee pastebin
         return `https://paste.ee/r/${fileId}`
@@ -45,6 +31,7 @@ export function getUrlPathId(url: string): string {
     return splitUrl[splitUrl.length - 1]
 }
 
+// Checks if URL is supported raw file domain
 export function isUrlSupportedDomain(url: string): boolean {
     return (
         url.startsWith('https://gnomebot.dev/paste/') ||

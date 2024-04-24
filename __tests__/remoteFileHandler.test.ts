@@ -1,4 +1,4 @@
-import { getUrlPathId, getRawFileUrl } from "@/app/remoteFileHandler"
+import { getRawFileUrl, getUrlPathId } from '@/app/getRawFileUrl'
 
 const gnomebotUrl = 'https://gnomebot.dev/paste/1234567890'
 const pastebinUrl = 'https://pastebin.com/1234567890'
