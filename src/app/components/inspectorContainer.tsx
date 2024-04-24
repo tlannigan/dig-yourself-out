@@ -67,7 +67,6 @@ export default function InspectorContainer() {
         async function getRemoteFile() {
             try {
                 setIsLoading(true)
-                setFile(undefined)
                 const response = await fetchRemoteFile(remoteFileUrl)
                 const file = createFileFromText(response)
                 setUploadedFile(file)
