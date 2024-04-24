@@ -181,5 +181,23 @@ export const generalRules: RuleCategory = {
             onlyVersionChecks: false,
             versionChecks: [],
         },
+        {
+            level: 'error',
+            title: 'Pose stack not empty',
+            description: 'This error is often caused by Epic Fight. Try removing it.',
+            candidates: ['java.lang.IllegalStateException: Pose stack not empty'],
+            onlyAppearsOnce: true,
+            onlyVersionChecks: false,
+            versionChecks: [],
+        },
+        {
+            level: 'warning',
+            title: 'Log possibly cut off',
+            description: 'If a log is written to at midnight it will be archived and a new file is created, leading to cut off logs.',
+            candidates: ['00:00:00', '00:00:01', '00:00:02', '00:00:03', '00:00:04', '00:00:05'],
+            onlyAppearsOnce: true,
+            onlyVersionChecks: false,
+            versionChecks: [],
+        },
     ],
 }

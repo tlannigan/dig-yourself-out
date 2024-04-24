@@ -1,9 +1,10 @@
 import { ReactElement } from 'react'
 import Issue from '../components/issue'
 import { Equality } from '../enums'
+import { RuleCategory } from '../rules/general'
 
 // Returns an array of issue components for each matched rule
-export default function getIssues(fileInfo: any, ruleCategories: any, enableDebugging = false) {
+export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[], enableDebugging = false) {
     const issues: ReactElement[] = []
 
     // Iterate over rule categories
@@ -21,7 +22,7 @@ export default function getIssues(fileInfo: any, ruleCategories: any, enableDebu
                 issues.push(<Issue rule={rule} lineNumber={-1} key={index} />)
             } else {
                 for (let line = 0; line < fileInfo.lines.length; line++) {
-                    if (rule.candidates.some((rule: any) => fileInfo.lines[line].includes(rule))) {
+                    if (rule.candidates.some((candidate: any) => fileInfo.lines[line].includes(candidate))) {
                         issues.push(<Issue rule={rule} lineNumber={line + 1} key={index} />)
                         if (rule.onlyAppearsOnce) break
                     }
