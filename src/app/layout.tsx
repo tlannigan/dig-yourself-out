@@ -1,7 +1,11 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Providers } from './providers'
 import { fonts } from './fonts'
+
+export const viewport: Viewport = {
+    colorScheme: 'dark'
+}
 
 export const metadata: Metadata = {
     title: 'Dig Yourself Out',

@@ -1,3 +1,8 @@
+:root {
+    color-scheme: dark;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgb(64, 64, 64);
+}
+
 body {
     font-family: 'Fira Mono', monospace;
     font-weight: 400;
