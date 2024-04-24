@@ -18,6 +18,7 @@ export default function LoadingOverlay({ isLoading, isParsing }: LoadingOverlayP
     return (
         <Box
             display={isLoading || isParsing ? 'block' : 'none'}
+            style={{ zIndex: 15 }}
             pos="absolute"
             top={0}
             left={0}
