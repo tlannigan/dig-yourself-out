@@ -17,7 +17,6 @@ export const forgeRules: RuleCategory = {
             description: 'Consider modern alternatives to OptiFine like Embeddium and Oculus or Sodium and Iris.',
             candidates: ['OptiFineTransformationService.onLoad'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -32,7 +31,6 @@ export const forgeRules: RuleCategory = {
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['Missing or unsupported mandatory dependencies'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -47,7 +45,6 @@ export const forgeRules: RuleCategory = {
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['Unsupported installed optional dependencies'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -62,7 +59,6 @@ export const forgeRules: RuleCategory = {
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['net.minecraftforge.fml.ModLoadingException'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -77,7 +73,6 @@ export const forgeRules: RuleCategory = {
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['net.minecraftforge.fml.common.MissingModsException'],
             onlyAppearsOnce: false,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -92,7 +87,6 @@ export const forgeRules: RuleCategory = {
             description: 'Correct the dependency issues listed in your log.',
             candidates: [') requires mods ['],
             onlyAppearsOnce: false,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -107,7 +101,6 @@ export const forgeRules: RuleCategory = {
             description: 'Forge 36.2.25 and below requires Java 8 update 320 or below for Minecraft 1.16.',
             candidates: [],
             onlyAppearsOnce: true,
-            onlyVersionChecks: true,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -132,7 +125,6 @@ export const forgeRules: RuleCategory = {
             description: 'This can be caused by using a mod for the wrong modloader (eg. Fabric vs. Forge).',
             candidates: ['The following classes are missing, but are reported in the mods.toml'],
             onlyAppearsOnce: false,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -147,7 +139,6 @@ export const forgeRules: RuleCategory = {
             description: 'Some mods can contain code from other mods and they can conflict. Remove one of the duplicate mods listed.',
             candidates: ['Found duplicate mods:'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [
                 {
                     type: 'mcVersion',

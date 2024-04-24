@@ -12,7 +12,6 @@ export type Rule = {
     description: string
     candidates: string[]
     onlyAppearsOnce: boolean
-    onlyVersionChecks: boolean
     versionChecks: VersionCheck[]
 }
 
@@ -32,7 +31,6 @@ export const generalRules: RuleCategory = {
             description: 'Minecraft 1.16.5 and older requires Java 8.',
             candidates: [],
             onlyAppearsOnce: true,
-            onlyVersionChecks: true,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -52,7 +50,6 @@ export const generalRules: RuleCategory = {
             description: 'Minecraft 1.17 requires Java 16.',
             candidates: [],
             onlyAppearsOnce: true,
-            onlyVersionChecks: true,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -72,7 +69,6 @@ export const generalRules: RuleCategory = {
             description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
             onlyAppearsOnce: true,
-            onlyVersionChecks: true,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -92,7 +88,6 @@ export const generalRules: RuleCategory = {
             description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
             onlyAppearsOnce: true,
-            onlyVersionChecks: true,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -112,7 +107,6 @@ export const generalRules: RuleCategory = {
             description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
             onlyAppearsOnce: true,
-            onlyVersionChecks: true,
             versionChecks: [
                 {
                     type: 'mcVersion',
@@ -133,7 +127,6 @@ export const generalRules: RuleCategory = {
                 'A process is already using the assigned port. Close any other servers or restart your computer.',
             candidates: ['**** FAILED TO BIND TO PORT!'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
         {
@@ -147,7 +140,6 @@ export const generalRules: RuleCategory = {
                 'Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError',
             ],
             onlyAppearsOnce: false,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
         {
@@ -159,8 +151,13 @@ export const generalRules: RuleCategory = {
                 'Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError: Critical injection failure: Constant modifier method getActualReachDistance(DLnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)D in mixins.reach-entity-attributes.json:ItemMixin from mod reach_entity_attributes failed injection check',
             ],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
-            versionChecks: [],
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.GTE,
+                    version: '1.16.5'
+                }
+            ],
         },
         {
             level: 'error',
@@ -169,7 +166,6 @@ export const generalRules: RuleCategory = {
                 'One or more config files have become corrupted. Fix or delete them. When this error occurs there are usually multiple config files that require attention.',
             candidates: ['ConfigLoadingException: Failed loading config file'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
         {
@@ -178,7 +174,6 @@ export const generalRules: RuleCategory = {
             description: 'Offline servers can cause problems with mods that rely on player IDs. Switch to online mode before continuing to debug.',
             candidates: ['SERVER IS RUNNING IN OFFLINE/INSECURE MODE'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
         {
@@ -187,8 +182,13 @@ export const generalRules: RuleCategory = {
             description: 'This error is often caused by Epic Fight. Try removing it.',
             candidates: ['java.lang.IllegalStateException: Pose stack not empty'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
-            versionChecks: [],
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.GTE,
+                    version: '1.16.5'
+                }
+            ],
         },
         {
             level: 'warning',
@@ -196,7 +196,6 @@ export const generalRules: RuleCategory = {
             description: 'If a log is written to at midnight it will be archived and a new file is created, leading to cut off logs.',
             candidates: ['00:00:00', '00:00:01', '00:00:02', '00:00:03', '00:00:04', '00:00:05'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
     ],

@@ -11,7 +11,6 @@ export const hotspotCrashDumpRules: RuleCategory = {
                 'An AMD driver issue has crashed your game. Make sure Minecraft is using the right GPU or update your AMD drivers.',
             candidates: ['C  [atio6axx'],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
         {
@@ -28,7 +27,6 @@ export const hotspotCrashDumpRules: RuleCategory = {
                 'ig9icd64.dll',
             ],
             onlyAppearsOnce: true,
-            onlyVersionChecks: false,
             versionChecks: [],
         },
     ],

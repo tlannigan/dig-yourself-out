@@ -18,12 +18,12 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
             if (!doesRuleApplyToFile(fileInfo, rule, enableDebugging)) continue
 
             // Check if rule only consists of version checks and no line checking
-            if (rule.onlyVersionChecks) {
+            if (rule.candidates.length === 0) {
                 issues.push(<Issue rule={rule} lineNumber={-1} key={index} />)
             } else {
                 for (let line = 0; line < fileInfo.lines.length; line++) {
                     if (rule.candidates.some((candidate: any) => fileInfo.lines[line].includes(candidate))) {
-                        issues.push(<Issue rule={rule} lineNumber={line + 1} key={index} />)
+                        issues.push(<Issue rule={rule} lineNumber={line + 1} key={line + 1} />)
                         if (rule.onlyAppearsOnce) break
                     }
                 }
@@ -170,4 +170,8 @@ export function getNoIssueIssue() {
     }
 
     return <Issue rule={noIssueRule} lineNumber={-1} key={0} />
+}
+
+export function getKey(index: number) {
+    return (index !== -1) ? index : 0
 }
