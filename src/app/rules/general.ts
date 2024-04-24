@@ -198,5 +198,13 @@ export const generalRules: RuleCategory = {
             onlyAppearsOnce: true,
             versionChecks: [],
         },
+        {
+            level: 'warning',
+            title: 'Cloud folder detected',
+            description: 'It is not recommended to store your modpack instances or servers in cloud-saved folders, like OneDrive or CloudDocs, as it can lead to corrupted files.',
+            candidates: ['OneDrive', 'com~apple~CloudDocs'],
+            onlyAppearsOnce: true,
+            versionChecks: [],
+        },
     ],
 }
