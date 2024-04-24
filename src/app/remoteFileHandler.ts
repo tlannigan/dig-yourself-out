@@ -14,9 +14,9 @@ export default async function fetchRemoteFile(url: string) {
     }
 }
 
-function getRawFileUrl(fileUrl: string): string {
+export function getRawFileUrl(fileUrl: string): string {
     const url = fileUrl.trim()
-    const fileQueryId = getFileQueryId(url)
+    const fileId = getUrlPathId(url)
     if (url.startsWith('https://gnomebot.dev/paste/') && !url.endsWith('/raw')) {
         // Gnomebot pastebin
         return `${url}/raw`
@@ -25,14 +25,14 @@ function getRawFileUrl(fileUrl: string): string {
         if (url.startsWith('https://pastebin.com/raw/')) {
             return url
         } else {
-            return `https://pastebin.com/raw/${fileQueryId}`
+            return `https://pastebin.com/raw/${fileId}`
         }
     } else if (url.startsWith('https://mclo.gs/')) {
         // MC Logs pastebin
-        return `https://api.mclo.gs/1/raw/${fileQueryId}`
+        return `https://api.mclo.gs/1/raw/${fileId}`
     } else if (url.startsWith('https://paste.ee/p/')) {
         // Pastee pastebin
-        return `https://paste.ee/r/${fileQueryId}`
+        return `https://paste.ee/r/${fileId}`
     } else if (isUrlSupportedDomain(url)) {
         return url
     }
@@ -40,16 +40,16 @@ function getRawFileUrl(fileUrl: string): string {
 }
 
 // Example: `https://pastebin.com/n3hPafCi` returns `n3hPafCi`
-function getFileQueryId(url: string): string {
+export function getUrlPathId(url: string): string {
     const splitUrl = url.split('/')
     return splitUrl[splitUrl.length - 1]
 }
 
-function isUrlSupportedDomain(url: string): boolean {
+export function isUrlSupportedDomain(url: string): boolean {
     return (
         url.startsWith('https://gnomebot.dev/paste/') ||
         url.startsWith('https://pastebin.com/') ||
-        url.startsWith('https://mclo.gs/') ||
+        url.startsWith('https://api.mclo.gs/1/raw/') ||
         url.startsWith('https://paste.ee/r/') ||
         url.startsWith('https://gist.githubusercontent.com/')
     )
