@@ -67,9 +67,11 @@ export default function InspectorContainer() {
         async function getRemoteFile() {
             try {
                 setIsLoading(true)
-                const response = await fetchRemoteFile(remoteFileUrl)
-                const file = createFileFromText(response)
-                setUploadedFile(file)
+                const remoteFile = await fetchRemoteFile(remoteFileUrl)
+                if (remoteFile) {
+                    const file = createFileFromText(remoteFile)
+                    setUploadedFile(file)
+                }
             } catch (err) {
                 if (err instanceof Error) {
                     showToast(err.message)

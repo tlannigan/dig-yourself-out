@@ -11,12 +11,27 @@ import {
     Tooltip,
     Tr,
 } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import fetchMinecraftProfile from '../fetchMinecraftProfile'
 
 export type FileDetailsProps = {
     file: any
 }
 
 export default function FileDetails({ file }: FileDetailsProps) {
+    const [usernameExists, setUsernameExists] = useState<boolean>(true)
+
+    // Check if player owns Minecraft
+    useEffect(() => {
+        async function getMinecraftProfile() {
+            const minecraftProfile = await fetchMinecraftProfile(file.username)
+            setUsernameExists(minecraftProfile !== undefined)
+        }
+        if (file.username) {
+            getMinecraftProfile()
+        }
+    }, [file.username])
+
     if (file) {
         const getTableRow = (rowName: string, data: string) => {
             if (data) {
@@ -34,6 +49,17 @@ export default function FileDetails({ file }: FileDetailsProps) {
                     </Tr>
                 )
             }
+        }
+
+        const getUsername = () => {
+            if (file.username) {
+                if (usernameExists) {
+                    return file.username
+                } else {
+                    return file.username + '*'
+                }
+            }
+            return ''
         }
 
         return (
@@ -59,6 +85,7 @@ export default function FileDetails({ file }: FileDetailsProps) {
                             <Tbody>
                                 {getTableRow('Filename', file.name)}
                                 {getTableRow('Modified', file.modified)}
+                                {getTableRow('Username', getUsername())}
                                 {getTableRow('Minecraft', file.mcVersion)}
                                 {getTableRow('Java', file.java)}
                                 {getTableRow('Forge', file.forgeVersion)}

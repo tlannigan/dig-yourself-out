@@ -12,6 +12,5 @@ export default async function fetchRemoteFile(url: string) {
         if (err instanceof Error) {
             throw new Error(err.message)
         }
-        return ''
     }
 }
