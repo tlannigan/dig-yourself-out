@@ -1,4 +1,5 @@
-import { FileType } from '../enums'
+import { ReactElement } from 'react'
+import { FileType, Launcher } from '../enums'
 import { crashReportParser } from './fileParsers/crashReportParser'
 import { extendedMultimcLogParser } from './fileParsers/extendedMultimcLogParser'
 import { hotspotCrashDumpParser } from './fileParsers/hotspotCrashDumpParser'
@@ -9,8 +10,41 @@ import { unknownFileParser } from './fileParsers/unknownFileParser'
 import getMinecraftFileType from './fileTypeParser'
 import getLines from './lineParser'
 
+export type FileInfo = {
+    name: string
+    modified: string
+    lineCount: string
+    
+    // Line parser
+    lines: string[]
+
+    // File parser
+    accessToken?: string
+    assetIndex?: string
+    assetsDir?: string
+    fmlVersion?: string
+    gameDir?: string
+    height?: string
+    java?: string
+    launchTarget?: string
+    launcher?: string
+    mcVersion?: string
+    neoForgeVersion?: string
+    neoFormVersion?: string
+    os?: string
+    userType?: string
+    username?: string
+    uuid?: string
+    version?: string
+    versionType?: string
+    width?: string
+
+    // Issue parser
+    issues: ReactElement[]
+}
+
 export async function getFileInfo(
-    file: any,
+    file: File,
     removeDuplicates: boolean = true,
     useLocalTime: boolean = false,
     enableDebugging: boolean = false,
@@ -22,7 +56,7 @@ export async function getFileInfo(
 
     if (enableDebugging) console.info(parsedFileInfo)
 
-    const fileInfo = {
+    const fileInfo: FileInfo = {
         name: file.name,
         modified: getLastModified(file.lastModified, useLocalTime),
         lineCount: lines.length.toString(),

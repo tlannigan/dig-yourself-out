@@ -6,13 +6,11 @@ import {
     Box,
     Table,
     TableContainer,
-    Tbody,
-    Td,
-    Tooltip,
-    Tr,
+    Tbody
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import fetchMinecraftProfile from '../fetchMinecraftProfile'
+import TableRow from './fileDetailsRow'
 
 export type FileDetailsProps = {
     file: any
@@ -27,30 +25,12 @@ export default function FileDetails({ file }: FileDetailsProps) {
             const minecraftProfile = await fetchMinecraftProfile(file.username)
             setUsernameExists(minecraftProfile !== undefined)
         }
-        if (file.username) {
+        if (file.username && !file.username.includes('<')) {
             getMinecraftProfile()
         }
     }, [file.username])
 
     if (file) {
-        const getTableRow = (rowName: string, data: string) => {
-            if (data) {
-                const maxCharacterLength = 26
-                const isDisabled = data.length <= maxCharacterLength
-
-                return (
-                    <Tr>
-                        <Td>{rowName}:</Td>
-                        <Td>
-                            <Tooltip isDisabled={isDisabled} label={data} fontSize="md" bg="green.500">
-                                {truncateLine(data, maxCharacterLength)}
-                            </Tooltip>
-                        </Td>
-                    </Tr>
-                )
-            }
-        }
-
         const getUsername = () => {
             if (file.username) {
                 if (usernameExists) {
@@ -83,18 +63,18 @@ export default function FileDetails({ file }: FileDetailsProps) {
                     <TableContainer>
                         <Table variant="unstyled" size="sm">
                             <Tbody>
-                                {getTableRow('Filename', file.name)}
-                                {getTableRow('Modified', file.modified)}
-                                {getTableRow('Username', getUsername())}
-                                {getTableRow('Minecraft', file.mcVersion)}
-                                {getTableRow('Java', file.java)}
-                                {getTableRow('Forge', file.forgeVersion)}
-                                {getTableRow('Fabric', file.fabricVersion)}
-                                {getTableRow('NeoForge', file.neoForgeVersion)}
-                                {getTableRow('Launcher', file.launcher)}
-                                {getTableRow('Memory', file.memoryFlags)}
-                                {getTableRow('OS', file.os)}
-                                {getTableRow('Lines', file.lineCount)}
+                                <TableRow rowName='Filename' data={file.name} />
+                                <TableRow rowName='Modified' data={file.modified} />
+                                <TableRow rowName='Username' data={getUsername()} />
+                                <TableRow rowName='Minecraft' data={file.mcVersion} />
+                                <TableRow rowName='Java' data={file.java} />
+                                <TableRow rowName='Forge' data={file.forgeVersion} />
+                                <TableRow rowName='Fabric' data={file.fabricVersion} />
+                                <TableRow rowName='NeoForge' data={file.neoForgeVersion} />
+                                <TableRow rowName='Launcher' data={file.launcher} />
+                                <TableRow rowName='Memory' data={file.memoryFlags} />
+                                <TableRow rowName='OS' data={file.os} />
+                                <TableRow rowName='Lines' data={file.lineCount} />
                             </Tbody>
                         </Table>
                     </TableContainer>
@@ -103,12 +83,4 @@ export default function FileDetails({ file }: FileDetailsProps) {
         )
     }
     return <></>
-}
-
-export function truncateLine(line: string, truncateLength: number) {
-    if (line.length <= truncateLength) {
-        return line
-    } else {
-        return line.substring(0, truncateLength - 3) + '...'
-    }
 }
