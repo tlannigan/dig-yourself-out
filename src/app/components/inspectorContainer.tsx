@@ -1,5 +1,5 @@
 import { ChangeEventHandler, DragEventHandler, useCallback, useEffect, useState } from 'react'
-import { getFileInfo } from '../parsers/parser'
+import { FileInfo, getFileInfo } from '../parsers/parser'
 import { useToast, useDisclosure } from '@chakra-ui/react'
 import fetchRemoteFile from '../fetchRemoteFile'
 import UploadCallToAction from './uploadCallToAction'
@@ -11,7 +11,7 @@ export default function InspectorContainer() {
 
     const [uploadedFile, setUploadedFile] = useState<File>()
     const [remoteFileUrl, setRemoteFileUrl] = useState<string>('')
-    const [file, setFile] = useState() // Parsed file info
+    const [file, setFile] = useState<FileInfo>() // Parsed file info
 
     // Handles showing loading overlay while asynchronous code executes
     const [isLoading, setIsLoading] = useState(false)
@@ -46,7 +46,7 @@ export default function InspectorContainer() {
             try {
                 setIsParsing(true)
                 setFile(undefined)
-                const fileInfo = await getFileInfo(uploadedFile)
+                const fileInfo = await getFileInfo(uploadedFile!)
                 setFile(fileInfo)
             } catch (err) {
                 if (err instanceof Error) {
