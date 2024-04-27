@@ -35,7 +35,6 @@ const rule: Rule = {
       "String you want to find in a file 2",
     ],
     onlyAppearsOnce: boolean, // If this rule should only find the first match
-    onlyVersionChecks: boolean, // If this rule should only check versions
     versionChecks: [
         // Greater than or equal to version check
         {
