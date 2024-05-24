@@ -122,6 +122,25 @@ export const generalRules: RuleCategory = {
         },
         {
             level: 'error',
+            title: 'Java 21 required',
+            description: 'Minecraft 1.20.5+ requires Java 21.',
+            candidates: [],
+            onlyAppearsOnce: true,
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.GTE,
+                    version: '1.20.5',
+                },
+                {
+                    type: 'java',
+                    equality: Equality.RANGE,
+                    version: '21.0.0...22.0.0',
+                },
+            ],
+        },
+        {
+            level: 'error',
             title: 'Failed to bind to port',
             description:
                 'A process is already using the assigned port. Close any other servers or restart your computer.',
