@@ -21,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Contribute
 
 ### Adding rules
-If you want to add new rules to be detected in files, add them in the appropriate file in `/src/rules`. Here is an example rule:
+If you want to add new rules to be detected in files, add them in the appropriate file in `/src/app/rules`. Here is an example rule:
 
 ```ts
 enum Equality = { EQ, NOT, GTE, GT, LTE, LT, RANGE }
@@ -35,7 +35,6 @@ const rule: Rule = {
       "String you want to find in a file 2",
     ],
     onlyAppearsOnce: boolean, // If this rule should only find the first match
-    onlyVersionChecks: boolean, // If this rule should only check versions
     versionChecks: [
         // Greater than or equal to version check
         {
