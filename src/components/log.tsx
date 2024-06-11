@@ -10,7 +10,7 @@ export default function Log({ file }: LogProps) {
     }) : []
 
     return (
-        <Box p={4} fontSize={12} className='log-container' whiteSpace='pre'>
+        <Box py={4} pr={4} fontSize={12} className='log-container' whiteSpace='pre'>
             {displayLines}
         </Box>
     )
