@@ -1,6 +1,6 @@
 'use server'
 
-import fetchMinecraftProfile from '../../api/fetchMinecraftProfile'
+import fetchMinecraftProfile from '@/api/fetchMinecraftProfile'
 import { FileInfo } from './parser'
 
 export type BadActor = {
