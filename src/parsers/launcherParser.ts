@@ -1,4 +1,4 @@
-import { Launcher } from '../enums'
+import { Launcher } from '@/constants/enums'
 
 export default function getLauncherName(assetsDirectory: string) {
     const launcherType = getLauncherType(assetsDirectory)

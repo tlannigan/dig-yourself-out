@@ -1,4 +1,4 @@
-import { FileType } from '../enums'
+import { FileType } from '@/constants/enums'
 
 export default function getMinecraftFileType(lines: string[], name: string) {
     // Get the first few lines to account for any discrepancies as

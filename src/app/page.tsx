@@ -1,8 +1,8 @@
 'use client'
 
 import { Flex } from '@chakra-ui/react'
-import Navbar from './components/navbar'
-import InspectorContainer from './components/inspectorContainer'
+import Navbar from '@/components/navbar'
+import InspectorContainer from '@/components/inspectorContainer'
 import { fonts } from './fonts'
 
 export default function InspectorPage() {

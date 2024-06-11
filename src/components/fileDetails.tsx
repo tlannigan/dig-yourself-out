@@ -9,7 +9,7 @@ import {
     Tbody
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import fetchMinecraftProfile from '../fetchMinecraftProfile'
+import fetchMinecraftProfile from '@/api/fetchMinecraftProfile'
 import TableRow from './fileDetailsRow'
 
 export type FileDetailsProps = {

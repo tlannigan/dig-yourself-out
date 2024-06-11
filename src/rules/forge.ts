@@ -1,4 +1,4 @@
-import { Equality } from '../enums'
+import { Equality } from '../constants/enums'
 import { RuleCategory } from './general'
 
 export const forgeRules: RuleCategory = {

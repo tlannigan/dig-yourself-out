@@ -1,4 +1,4 @@
-import { generalRules } from '@/app/rules/general'
+import { generalRules } from '@/rules/general'
 import getIssues from '../issueParser'
 
 export const unknownFileParser = {

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 import Issue from '../components/issue'
-import { Equality } from '../enums'
-import { RuleCategory } from '../rules/general'
+import { Equality } from '@/constants/enums'
+import { RuleCategory } from '@/rules/general'
 
 // Returns an array of issue components for each matched rule
 export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[], enableDebugging = false) {

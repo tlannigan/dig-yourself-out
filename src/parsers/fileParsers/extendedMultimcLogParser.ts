@@ -1,8 +1,8 @@
 import getIssues from '../issueParser'
-import { generalRules } from '../../rules/general'
+import { generalRules } from '@/rules/general'
 import getLauncherName from '../launcherParser'
-import { forgeRules } from '@/app/rules/forge'
-import { fabricRules } from '@/app/rules/fabric'
+import { forgeRules } from '@/rules/forge'
+import { fabricRules } from '@/rules/fabric'
 
 export const extendedMultimcLogParser = {
     parse: (lines: string[]) => {

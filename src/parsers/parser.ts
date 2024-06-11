@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { FileType, Launcher } from '../enums'
+import { FileType, Launcher } from '@/constants/enums'
 import { crashReportParser } from './fileParsers/crashReportParser'
 import { extendedMultimcLogParser } from './fileParsers/extendedMultimcLogParser'
 import { hotspotCrashDumpParser } from './fileParsers/hotspotCrashDumpParser'

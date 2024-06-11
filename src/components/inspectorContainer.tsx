@@ -1,7 +1,7 @@
 import { ChangeEventHandler, DragEventHandler, useCallback, useEffect, useState } from 'react'
 import { FileInfo, getFileInfo } from '../parsers/parser'
 import { useToast, useDisclosure } from '@chakra-ui/react'
-import fetchRemoteFile from '../fetchRemoteFile'
+import fetchRemoteFile from '@/api/fetchRemoteFile'
 import UploadCallToAction from './uploadCallToAction'
 import Inspector from './inspector'
 import { useRouter } from 'next/navigation'

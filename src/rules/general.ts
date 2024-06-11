@@ -1,4 +1,4 @@
-import { Equality } from '../enums'
+import { Equality } from '../constants/enums'
 
 export type RuleCategory = {
     title: string
