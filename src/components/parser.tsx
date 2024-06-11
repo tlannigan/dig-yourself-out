@@ -1,4 +1,4 @@
-import { Flex, Button, UseDisclosureProps } from '@chakra-ui/react'
+import { Flex, UseDisclosureProps } from '@chakra-ui/react'
 import Log from './log'
 import Sidebar from './sidebar'
 import LoadingOverlay from './loadingOverlay'
@@ -6,7 +6,7 @@ import { FileHandlers } from './uploadCallToAction'
 import UploadRemoteFileModal from './uploadRemoteFileModal'
 import { Dispatch, SetStateAction } from 'react'
 
-export type InspectorProps = {
+export type ParserProps = {
     handlers: FileHandlers
     setRemoteFileUrl: Dispatch<SetStateAction<string>>
     disclosure: UseDisclosureProps
@@ -15,14 +15,14 @@ export type InspectorProps = {
     file: any
 }
 
-export default function Inspector({
+export default function Parser({
     handlers,
     setRemoteFileUrl,
     disclosure,
     isLoading,
     isParsing,
     file,
-}: InspectorProps) {
+}: ParserProps) {
     return (
         <Flex
             flexGrow={1}

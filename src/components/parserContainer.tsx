@@ -1,12 +1,14 @@
+'use client'
+
 import { ChangeEventHandler, DragEventHandler, useCallback, useEffect, useState } from 'react'
 import { FileInfo, getFileInfo } from '../parsers/parser'
 import { useToast, useDisclosure } from '@chakra-ui/react'
 import fetchRemoteFile from '@/api/fetchRemoteFile'
 import UploadCallToAction from './uploadCallToAction'
-import Inspector from './inspector'
+import Parser from './parser'
 import { useRouter } from 'next/navigation'
 
-export default function InspectorContainer() {
+export default function ParserContainer() {
     const router = useRouter()
 
     const [uploadedFile, setUploadedFile] = useState<File>()
@@ -39,7 +41,7 @@ export default function InspectorContainer() {
         // Fully removes # from window location
         const removeHash = () => {
             window.location.hash = ''
-            router.replace('/')
+            router.replace('/parser')
         }
 
         async function getParsedFile() {
@@ -127,7 +129,7 @@ export default function InspectorContainer() {
     }
     if (file && uploadedFile) {
         return (
-            <Inspector
+            <Parser
                 handlers={{ dropHandler, dragOverHandler, dragLeaveHandler, fileBrowserHandler }}
                 disclosure={{ isOpen, onOpen, onClose }}
                 setRemoteFileUrl={setRemoteFileUrl}

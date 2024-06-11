@@ -15,21 +15,21 @@ export default function Navbar() {
             <Flex justify="space-between">
                 <HStack fontSize={24} columnGap={4}>
                     <Link href="/">
-                        <Text fontWeight={700} textDecoration={isActive("/") ? "underline" : ""} _hover={{ textDecoration: 'underline' }}>
+                        <Text fontWeight={700} _hover={{ textDecoration: 'underline' }}>
                             Dig Yourself Out
                         </Text>
                     </Link>
                     <Text color="rgba(255, 255, 255, 0.75)">Alpha</Text>
                 </HStack>
                 <HStack spacing={'4rem'}>
-                    <Link href="/">
-                        <Text h={'100%'} textDecoration={isActive("/") ? "underline" : ""} _hover={{ textDecoration: 'underline' }} fontSize={20}>
-                            Log Parser
+                    <Link href="/parser">
+                        <Text h={'100%'} textDecoration={isActive("/parser") ? "underline" : ""} _hover={{ textDecoration: 'underline' }} fontSize={20}>
+                            Log Analyzer
                         </Text>
                     </Link>
                     <Link href="/diagnose">
                         <Text h={'100%'} textDecoration={isActive("/diagnose") ? "underline" : ""} _hover={{ textDecoration: 'underline' }} fontSize={20}>
-                            How to Diagnose
+                            Documentation
                         </Text>
                     </Link>
                 </HStack>
