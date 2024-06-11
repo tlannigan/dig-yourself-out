@@ -6,7 +6,7 @@ import NavLinks from './navLinks'
 import ExternalNavLinks from './externalNavLinks'
 import { Article, Chat, FindInPage, GitHub, Menu as MuiMenu } from '@mui/icons-material'
 
-export default function Navbar() {
+export default function Header() {
     return (
         <Box as="header" maxW="100dvw" bg="green.500" borderRadius="lg" px={4} py={2}>
             <Flex justify="space-between">
