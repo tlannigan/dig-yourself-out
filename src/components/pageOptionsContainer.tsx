@@ -1,5 +1,5 @@
-import { Flex, HStack, Text } from '@chakra-ui/react';
-import LogParserInfo from './logParserInfo';
+import { Flex } from '@chakra-ui/react';
+import LogAnalyzerInfo from './logAnalyzerInfo';
 import DiagnoseLogsInfo from './diagnoseLogsInfo';
 
 export default function PageOptionsContainer() {
@@ -12,7 +12,7 @@ export default function PageOptionsContainer() {
             color="white"
             pt={8}>
 
-            <LogParserInfo />
+            <LogAnalyzerInfo />
             <DiagnoseLogsInfo />
         </Flex>
     )

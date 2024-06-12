@@ -1,7 +1,7 @@
 import { Button, Heading, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 
-export default function LogParserInfo() {
+export default function LogAnalyzerInfo() {
     return (
         <VStack
             align="start"

@@ -23,7 +23,7 @@ export default function DiagnoseLogsInfo() {
                 <ListItem><StyledLink href="/" text="Finding sources of lag" /></ListItem>
             </UnorderedList>
             
-            <Link href="/docs">
+            <Link href="/learn">
                 <Button
                     aria-label="Visit documentation page"
                     variant="outline"

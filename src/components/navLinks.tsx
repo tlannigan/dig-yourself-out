@@ -22,10 +22,10 @@ export default function NavLinks() {
                     Log Analyzer
                 </Text>
             </Link>
-            <Link href="/docs">
+            <Link href="/learn">
                 <Text
                     h={'100%'}
-                    sx={isActive('/docs') ? underlineStyles : ''}
+                    sx={isActive('/learn') ? underlineStyles : ''}
                     _hover={underlineStyles}>
                     Documentation
                 </Text>
