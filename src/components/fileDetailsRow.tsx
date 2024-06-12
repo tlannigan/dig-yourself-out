@@ -7,7 +7,7 @@ export type TableRowProps = {
 
 export default function TableRow({ rowName, data }: TableRowProps) {
     if (data) {
-        const maxCharacterLength = 26
+        const maxCharacterLength = 25
         const isDisabled = data.length <= maxCharacterLength
 
         return (
