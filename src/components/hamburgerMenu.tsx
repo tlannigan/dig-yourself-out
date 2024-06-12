@@ -20,7 +20,7 @@ export default function HamburgerMenu() {
             />
             <MenuList bg="#1A1A1A" borderColor="black" fontSize={24}>
 
-                <MenuItem as={Link} href="/parser" bg="#1A1A1A" _hover={{ bg: '#242424' }} _focus={{ bg: '#242424' }} icon={<FindInPage />}>
+                <MenuItem as={Link} href="/analyzer" bg="#1A1A1A" _hover={{ bg: '#242424' }} _focus={{ bg: '#242424' }} icon={<FindInPage />}>
                     Log Analyzer
                 </MenuItem>
 
