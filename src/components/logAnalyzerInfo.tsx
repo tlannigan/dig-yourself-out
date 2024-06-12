@@ -25,7 +25,7 @@ export default function LogAnalyzerInfo() {
                 </Text>
             </div>
             
-            <Link href="/parser">
+            <Link href="/analyzer">
                 <Button
                     tabIndex={-1}
                     alignSelf="start"

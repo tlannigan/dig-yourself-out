@@ -41,7 +41,7 @@ export default function ParserContainer() {
         // Fully removes # from window location
         const removeHash = () => {
             window.location.hash = ''
-            router.replace('/parser')
+            router.replace('/analyzer')
         }
 
         async function getParsedFile() {
