@@ -5,14 +5,13 @@ import LearnInfo from './diagnoseLogsInfo';
 export default function PageOptionsContainer() {
     return (
         <Flex
-            justifyContent="center"
+            justifyContent={{ base: 'start', md: 'center' }}
             flexWrap={{ base: "wrap", md: "nowrap" }}
             columnGap={8}
-            rowGap={8}
+            rowGap={4}
             borderRadius={4}
-            fontSize={[16, 16, 16, 16, 24]}
-            color="white"
-            pt={8}>
+            fontSize={{ base: 16, lg: 20 }}
+            color="white">
 
             <LogAnalyzerInfo />
             <LearnInfo />

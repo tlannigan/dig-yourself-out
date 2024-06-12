@@ -57,10 +57,7 @@ export default function UploadCallToAction({
 
             <Text mx="auto">or</Text>
 
-            <HStack mx="auto" mt={4}>
-                <Button onClick={openFileInput} tabIndex={3} size="lg" colorScheme="green" mr={4}>
-                    Browse your PC
-                </Button>
+            <HStack mx="auto" spacing={4} mt={4}>
                 <Input
                     type="file"
                     accept=".txt, .log"
@@ -68,8 +65,23 @@ export default function UploadCallToAction({
                     id="file-input"
                     display="none"
                 />
-                <Button onClick={onOpen} tabIndex={4} size="lg" colorScheme="green">
+                <Button
+                    onClick={onOpen}
+                    size="lg"
+                    aria-label="Upload log file from URL"
+                    variant="outline"
+                    textColor="white"
+                    _hover={{ bg: 'green.500', borderColor: 'transparent' }}>
                     Upload from URL
+                </Button>
+                <Button
+                    onClick={openFileInput}
+                    size="lg"
+                    aria-label="Browse your PC for log files"
+                    variant="outline"
+                    textColor="white"
+                    _hover={{ bg: 'green.500', borderColor: 'transparent' }}>
+                    Browse your PC
                 </Button>
             </HStack>
 

@@ -8,7 +8,6 @@ export default function ExternalNavLinks() {
             <a
                 href="https://discord.gg/PFVJgTWAkX"
                 target="_blank"
-                tabIndex={1}
                 aria-label="Join our Discord community">
                 <IconButton
                     tabIndex={-1}
@@ -23,7 +22,6 @@ export default function ExternalNavLinks() {
             <a
                 href="https://github.com/tlannigan/dig-yourself-out"
                 target="_blank"
-                tabIndex={2}
                 aria-label="Visit the GitHub repository">
                 <IconButton
                     tabIndex={-1}

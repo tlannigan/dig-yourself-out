@@ -5,27 +5,38 @@ export default function LogAnalyzerInfo() {
     return (
         <VStack
             align="start"
-            h="100%"
+            justify="space-between"
+            flexBasis={{ base: '100%', md: '40%' }}
             border="2px"
             borderColor="green.500"
             borderRadius={16}
-            p={8}>
-            <Heading fontSize={{ base: 24, md: 32 }} mb={4}>Log Analyzer</Heading>
-            <Text mb={8}>
-                A tool that accepts common types of (modded) Minecraft logs and automatically tell you what&apos;s
-                wrong.
-            </Text>
+            p={{ base: 4, sm: 8 }}>
+
+            <div>
+                <Heading fontSize={{ base: 24, lg: 32 }} mb={4}>Log Analyzer</Heading>
+
+                <Text mb={4}>
+                    A tool that accepts common types of (modded) Minecraft logs and automatically tell you what&apos;s
+                    wrong.
+                </Text>
+
+                <Text mb={4}>
+                    The log analyzer is still in an alpha state. It will catch many common issues in logs, but not everything.
+                </Text>
+            </div>
             
             <Link href="/parser">
                 <Button
+                    tabIndex={-1}
                     alignSelf="start"
                     aria-label="Visit log analyzer page"
                     variant="outline"
                     textColor="white"
                     _hover={{ bg: 'green.500', borderColor: 'transparent' }}>
-                    Try it out
+                    Analyze your logs
                 </Button>
             </Link>
+
         </VStack>
     )
 }

@@ -13,11 +13,11 @@ export default function NavLinks() {
     }
 
     return (
-        <HStack spacing={'4rem'} fontSize={20}>
-            <Link href="/parser">
+        <HStack spacing={'3rem'} fontSize={20}>
+            <Link href="/analyzer">
                 <Text
                     h={'100%'}
-                    sx={isActive('/parser') ? underlineStyles : ''}
+                    sx={isActive('/analyzer') ? underlineStyles : ''}
                     _hover={underlineStyles}>
                     Log Analyzer
                 </Text>
@@ -27,7 +27,7 @@ export default function NavLinks() {
                     h={'100%'}
                     sx={isActive('/learn') ? underlineStyles : ''}
                     _hover={underlineStyles}>
-                    Documentation
+                    Learn
                 </Text>
             </Link>
         </HStack>

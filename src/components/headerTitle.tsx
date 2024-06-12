@@ -14,7 +14,6 @@ export default function HeaderTitle() {
                     Dig Yourself Out
                 </Text>
             </Link>
-            <Text color="rgba(255, 255, 255, 0.75)">Alpha</Text>
         </HStack>
     )
 }

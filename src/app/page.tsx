@@ -6,7 +6,7 @@ import Footer from '@/components/footer'
 
 export default function Page() {
     return (
-        <Flex direction="column" justify="space-between" minH="100dvh" p={4} className={fonts.firaMono.variable}>
+        <Flex direction="column" justify={{ md: "space-between" }} rowGap={4} minH="100dvh" p={4} className={fonts.firaMono.variable}>
             <Header />
             <PageOptionsContainer />
             <Footer />

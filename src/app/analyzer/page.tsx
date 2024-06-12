@@ -3,7 +3,7 @@ import Header from '@/components/header'
 import ParserContainer from '@/components/parserContainer'
 import { fonts } from '../fonts'
 
-export default function ParserPage() {
+export default function AnalyzerPage() {
     return (
         <Flex direction="column" minH="100dvh" p={4} className={fonts.firaMono.variable}>
             <Header />

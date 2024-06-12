@@ -1,4 +1,4 @@
-import { Box, Flex, Show } from '@chakra-ui/react'
+import { Box, Flex, Hide, Show } from '@chakra-ui/react'
 import HeaderTitle from './headerTitle'
 import NavLinks from './navLinks'
 import ExternalNavLinks from './externalNavLinks'
@@ -9,11 +9,11 @@ export default function Header() {
         <Box as="header" maxW="100dvw" bg="green.500" borderRadius="lg" px={4} py={2}>
             <Flex justify="space-between">
                 <HeaderTitle />
-                <Show above="lg">
+                <Hide below="md">
                     <NavLinks />
                     <ExternalNavLinks />
-                </Show>
-                <Show below="lg">
+                </Hide>
+                <Show below="md">
                     <HamburgerMenu />
                 </Show>
             </Flex>

@@ -8,6 +8,10 @@ export const theme = extendTheme({
                 bg: '#222020',
                 color: 'white',
             },
+            '&:focus-visible': {
+                outline: '4px solid magenta !important',
+                borderRadius: '4px'
+            }
         }),
     },
     fonts: {
