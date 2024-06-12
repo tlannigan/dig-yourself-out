@@ -64,6 +64,7 @@ export default function UploadRemoteFileModal({ setRemoteFileUrl, disclosure, is
                             id="file-fetch-url"
                             type="url"
                             placeholder="https://gnomebot.dev/..."
+                            _focusVisible={{ border: '1px solid white' }}
                             onKeyDown={onKeyPress}
                         />
                         <Button
