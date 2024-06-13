@@ -38,11 +38,12 @@ export function getLogLevel(line: string) {
 
 // at com.tterrag.registrate.util.entry.RegistryEntry.get(RegistryEntry.java:114) ~[Registrate-MC1.20-1.3.11.jar%23602!/:?] {re:mixin,re:classloading}
 export function getStacktraceLine(line: string, lineNumber: number) {
+    const firstUpperCase = indexOfFirstUppercase(line)
     return (
         <span id={`${lineNumber + 1}`} className={LogLevel.STACKTRACE} style={{ display: 'block', lineHeight: '20px' }}>
-            <span className="class-path"> {getClassPath(line)}</span>
-            <span className="class-name">{getClassName(line)}</span>
-            <span className="method">{getMethod(line)}</span>
+            <span className="class-path"> {getClassPath(line, firstUpperCase)}</span>
+            <span className="class-name">{getClassName(line, firstUpperCase)}</span>
+            <span className="method">{getMethod(line, firstUpperCase)}</span>
             <span className="class-file">{getClassFile(line)} </span>
             <span className="jar">{getJar(line)} </span>
             <span className="mixin-list">{getMixinList(line)}</span>
@@ -50,9 +51,9 @@ export function getStacktraceLine(line: string, lineNumber: number) {
     )
 }
 
-export function getClassPath(line: string) {
+export function getClassPath(line: string, firstUpperCase: number) {
     const start = line.indexOf('at ') - 3
-    const end = indexOfFirstUppercase(line)
+    const end = firstUpperCase
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
     } else {
@@ -60,8 +61,8 @@ export function getClassPath(line: string) {
     }
 }
 
-export function getClassName(line: string) {
-    const start = indexOfFirstUppercase(line)
+export function getClassName(line: string, firstUpperCase: number) {
+    const start = firstUpperCase
     const end = line.indexOf('.', start) + 1
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
@@ -70,9 +71,8 @@ export function getClassName(line: string) {
     }
 }
 
-export function getMethod(line: string) {
-    const startOfClassName = indexOfFirstUppercase(line)
-    const start = line.indexOf('.', startOfClassName) + 1
+export function getMethod(line: string, firstUpperCase: number) {
+    const start = line.indexOf('.', firstUpperCase) + 1
     const end = line.indexOf('(')
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
@@ -110,7 +110,15 @@ export function getMixinList(line: string) {
 }
 
 export function indexOfFirstUppercase(string: string) {
-    for (let i = 0; i < string.length; i++) {
+    let index = 0
+
+    // Skip stacktraces what start with TRANSFORMER or MC-BOOTSTRAP
+    const firstCharacterOfClassPath = string.trim()[3]
+    if (firstCharacterOfClassPath == firstCharacterOfClassPath.toUpperCase() && (firstCharacterOfClassPath.match(/[a-z]/i))) {
+        index = 19
+    }
+
+    for (let i = index; i < string.length; i++) {
         if (string[i] == string[i].toUpperCase() && (string[i].match(/[a-z]/i))) {
             return i
         }

@@ -16,10 +16,6 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.log-container {
-    text-wrap: nowrap;
-}
-
 .error {
     color: #f56565;
 }
@@ -37,7 +33,7 @@ body {
 }
 
 .class-path {
-    color: #c5e3f7;
+    color: #c7c4bd;
 }
 
 .class-name {
@@ -53,7 +49,7 @@ body {
 }
 
 .jar {
-    color: #f7f6f3;
+    color: #c5e3f7;
 }
 
 .mixin-list {
