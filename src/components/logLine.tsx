@@ -9,8 +9,9 @@ export default function LogLine({ line, lineNumber }: { line: string; lineNumber
                    {line}
                </span>
             )
+        } else {
+            return getStacktraceLine(line, lineNumber)
         }
-        return getStacktraceLine(line, lineNumber)
     }
     return styledLine()
 }
@@ -52,37 +53,60 @@ export function getStacktraceLine(line: string, lineNumber: number) {
 export function getClassPath(line: string) {
     const start = line.indexOf('at ') - 3
     const end = indexOfFirstUppercase(line)
-    return line.substring(start, end)
+    if (start >= 0 && end >= 0) {
+        return line.substring(start, end)
+    } else {
+        return ''
+    }
 }
 
 export function getClassName(line: string) {
     const start = indexOfFirstUppercase(line)
     const end = line.indexOf('.', start) + 1
-    return line.substring(start, end)
+    if (start >= 0 && end >= 0) {
+        return line.substring(start, end)
+    } else {
+        return ''
+    }
 }
 
 export function getMethod(line: string) {
     const startOfClassName = indexOfFirstUppercase(line)
     const start = line.indexOf('.', startOfClassName) + 1
     const end = line.indexOf('(')
-    return line.substring(start, end)
+    if (start >= 0 && end >= 0) {
+        return line.substring(start, end)
+    } else {
+        return ''
+    }
 }
 
 export function getClassFile(line: string) {
     const start = line.indexOf('(')
     const end = line.indexOf(')') + 1
-    return line.substring(start, end)
+    if (start >= 0 && end >= 0) {
+        return line.substring(start, end)
+    } else {
+        return ''
+    }
 }
 
 export function getJar(line: string) {
     const start = line.indexOf('~[')
     const end = line.indexOf(']') + 1
-    return line.substring(start, end)
+    if (start >= 0 && end >= 0) {
+        return line.substring(start, end)
+    } else {
+        return ''
+    }
 }
 
 export function getMixinList(line: string) {
     const start = line.indexOf('{')
-    return line.substring(start, line.length)
+    if (start >= 0) {
+        return line.substring(start, line.length - 1)
+    }
+    return ''
 }
 
 export function indexOfFirstUppercase(string: string) {
@@ -91,5 +115,5 @@ export function indexOfFirstUppercase(string: string) {
             return i
         }
     }
-    return 0
+    return -1
 }
