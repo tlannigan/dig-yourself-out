@@ -1,33 +1,15 @@
+
 import { Box } from '@chakra-ui/react'
+import LogLine from './logLine'
 
-export type LogProps = {
-    file: any
-}
-
-export default function Log({ file }: LogProps) {
-    const displayLines = file ? file.lines.map((line: string, i: number) => {
-        return <span id={`${i + 1}`} key={i + 1} className={getLogLevel(line)} style={{ display: 'block', lineHeight: '20px' }}>{line}</span>
-    }) : []
+export default function Log({ file }: { file: any }) {
+    // const displayLines = file ? file.lines.map((line: string, i: number) => {
+    //     return <span id={`${i + 1}`} key={i + 1} className={getLogLevel(line)} style={{ display: 'block', lineHeight: '20px' }}>{line}</span>
+    // }) : []
 
     return (
         <Box py={4} pr={4} fontSize={12} className='log-container' whiteSpace='pre'>
-            {displayLines}
+            {file.lines.map((line: string, index: number) => <LogLine key={index} line={line} lineNumber={index} />)}
         </Box>
     )
-}
-
-export function getLogLevel(line: string) {
-    if (line.includes('/INFO]')) {
-        return 'info'
-    } else if (line.includes('/WARN]')) {
-        return 'warning'
-    } else if (line.includes('/ERROR]') || line.includes('/FATAL]')) {
-        return 'error'
-    } else if (line.trim().startsWith('Caused by: ')) {
-        return 'error'
-    } else if (line.startsWith('      Repeated')) {
-        return 'repeat'
-    } else {
-        return 'unknown'
-    }
 }

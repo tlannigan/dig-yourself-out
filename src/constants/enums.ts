@@ -31,3 +31,12 @@ export enum Equality {
     LT,
     RANGE,
 }
+
+export enum LogLevel {
+    ERROR = 'error',
+    WARNING = 'warning',
+    INFO = 'info',
+    STACKTRACE = 'stacktrace',
+    REPEATED = 'repeated',
+    UNKNOWN = 'unknown'
+}

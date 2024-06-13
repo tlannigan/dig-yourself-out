@@ -32,7 +32,35 @@ body {
     color: #cbd5e0;
 }
 
-.repeat {
+.stacktrace {
+    color: #f56565;
+}
+
+.class-path {
+    color: #c5e3f7;
+}
+
+.class-name {
+    color: #e2c29d;
+}
+
+.method {
+    color: #bb8e5d;
+}
+
+.class-file {
+    color: #e4dbab;
+}
+
+.jar {
+    color: #f7f6f3;
+}
+
+.mixin-list {
+    color: #8b9291;
+}
+
+.repeated {
     color: rgba(128, 128, 128, 0.5);
 }
 
