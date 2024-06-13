@@ -1,6 +1,8 @@
 # Dig Yourself Out
 Webapp to help players, server admins, and modpack developers troubleshoot Minecraft issues. Data-driven rule detection to find the most common problems.
 
+Try it out at https://digyourselfout.app
+
 ## Installation
 ```
 # clone the repo
