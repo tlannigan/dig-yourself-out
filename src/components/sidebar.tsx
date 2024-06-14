@@ -18,7 +18,7 @@ export default function Sidebar({ fileBrowserHandler, disclosure, file }: Sideba
         <Box
             id="sidebar"
             flexShrink={!isOpen ? 0 : 1}
-            boxSize="sm"
+            boxSize="md"
             maxW="100%"
             h="100%"
             pb={4}
