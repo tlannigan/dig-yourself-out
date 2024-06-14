@@ -1,5 +1,5 @@
 import { IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import { Article, Chat, FindInPage, GitHub, Menu as MuiMenu } from '@mui/icons-material'
+import { Article, FindInPage, GitHub, Menu as MuiMenu } from '@mui/icons-material'
 import Link from 'next/link'
 import DiscordIcon from './discordIcon'
 
