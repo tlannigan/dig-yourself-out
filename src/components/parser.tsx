@@ -31,6 +31,7 @@ export default function Parser({
             onDrop={handlers.dropHandler}
             onDragOver={handlers.dragOverHandler}
             onDragLeave={handlers.dragLeaveHandler}>
+
             <LoadingOverlay isLoading={isLoading} isParsing={isParsing} />
 
             <Sidebar fileBrowserHandler={handlers.fileBrowserHandler} disclosure={disclosure} file={file} />

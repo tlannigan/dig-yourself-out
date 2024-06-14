@@ -72,7 +72,9 @@ export default function FileDetails({ file }: FileDetailsProps) {
                                 <TableRow rowName='Fabric' data={file.fabricVersion} />
                                 <TableRow rowName='NeoForge' data={file.neoForgeVersion} />
                                 <TableRow rowName='Launcher' data={file.launcher} />
-                                <TableRow rowName='Memory' data={file.memoryFlags} />
+                                <TableRow rowName='CPU' data={file.cpu} />
+                                <TableRow rowName='Phys. Memory' data={file.physicalMemory} />
+                                <TableRow rowName='Alloc. Memory' data={file.allocatedMemory} />
                                 <TableRow rowName='OS' data={file.os} />
                                 <TableRow rowName='Lines' data={file.lineCount} />
                             </Tbody>

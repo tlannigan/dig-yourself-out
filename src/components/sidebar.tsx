@@ -20,7 +20,7 @@ export default function Sidebar({ fileBrowserHandler, disclosure, file }: Sideba
             flexShrink={!isOpen ? 0 : 1}
             boxSize="sm"
             maxW="100%"
-            h="100dvh"
+            h="100%"
             pb={4}
             pr={4}
             overflowY={!isOpen ? 'auto' : 'visible'}

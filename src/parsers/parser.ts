@@ -20,6 +20,7 @@ export type FileInfo = {
 
     // File parser
     accessToken?: string
+    allocatedMemory?: string
     assetIndex?: string
     assetsDir?: string
     fmlVersion?: string
@@ -28,10 +29,12 @@ export type FileInfo = {
     java?: string
     launchTarget?: string
     launcher?: string
+    physicalMemory?: string
     mcVersion?: string
     neoForgeVersion?: string
     neoFormVersion?: string
     os?: string
+    cpu?: string
     userType?: string
     username?: string
     uuid?: string

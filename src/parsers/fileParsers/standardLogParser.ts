@@ -101,7 +101,7 @@ export function getSystemInfo(lines: string[]) {
     const forgeLegacyInfoLine = lines.find((l) => l.toLowerCase().includes('java is'))
     if (forgeLegacyInfoLine) {
         return {
-            memoryFlags: getMemoryFlags(lines),
+            allocatedMemory: getMemoryFlags(lines),
             ...getLegacySystemInfo(forgeLegacyInfoLine),
         }
     }
