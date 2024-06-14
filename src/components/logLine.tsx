@@ -53,7 +53,7 @@ export function getStacktraceLine(line: string, lineNumber: number) {
 
 export function getClassPath(line: string, firstUpperCase: number) {
     const start = line.indexOf('at ') - 3
-    const end = firstUpperCase
+    const end = firstUpperCase - 1
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
     } else {
@@ -62,8 +62,8 @@ export function getClassPath(line: string, firstUpperCase: number) {
 }
 
 export function getClassName(line: string, firstUpperCase: number) {
-    const start = firstUpperCase
-    const end = line.indexOf('.', start) + 1
+    const start = firstUpperCase - 1
+    const end = line.indexOf('.', start + 1)
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
     } else {
@@ -72,7 +72,7 @@ export function getClassName(line: string, firstUpperCase: number) {
 }
 
 export function getMethod(line: string, firstUpperCase: number) {
-    const start = line.indexOf('.', firstUpperCase) + 1
+    const start = line.indexOf('.', firstUpperCase)
     const end = line.indexOf('(')
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
