@@ -123,5 +123,9 @@ export function indexOfFirstUppercase(string: string) {
             return i
         }
     }
+
+    // Catch obfuscated class names
+    if (string.includes('class_')) return string.indexOf('class_')
+
     return -1
 }
