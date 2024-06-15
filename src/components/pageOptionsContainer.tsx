@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import LogAnalyzerInfo from './logAnalyzerInfo';
-import LearnInfo from './diagnoseLogsInfo';
+import LearnInfo from './learnInfo';
 
 export default function PageOptionsContainer() {
     return (
