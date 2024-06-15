@@ -23,6 +23,9 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
             } else {
                 for (let line = 0; line < fileInfo.lines.length; line++) {
                     if (rule.candidates.some((candidate: any) => fileInfo.lines[line].includes(candidate))) {
+                        if (rule.preprocessor) {
+                            rule.description = rule.preprocessor(fileInfo.lines.slice(line))
+                        }
                         issues.push(<Issue rule={rule} lineNumber={line + 1} key={line + 1} />)
                         if (rule.onlyAppearsOnce) break
                     }

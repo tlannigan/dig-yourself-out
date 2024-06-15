@@ -5,7 +5,7 @@ import DiscordIcon from './discordIcon'
 
 export default function HamburgerMenu() {
     return (
-        <Menu>
+        <Menu isLazy>
             <MenuButton
                 as={IconButton}
                 aria-label="Navigation"

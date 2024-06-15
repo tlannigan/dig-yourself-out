@@ -9,7 +9,8 @@ export type RuleCategory = {
 export type Rule = {
     level: string
     title: string
-    description: string
+    description?: string
+    preprocessor?: (lines: string[]) => string
     candidates: string[]
     onlyAppearsOnce: boolean
     versionChecks: VersionCheck[]

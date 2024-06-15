@@ -1,5 +1,6 @@
 import { Equality } from '../constants/enums'
 import { RuleCategory } from './general'
+import { getMissingOrUnsupportedDependencies } from './rulePreprocessor'
 
 export const forgeRules: RuleCategory = {
     title: 'Forge',
@@ -28,7 +29,7 @@ export const forgeRules: RuleCategory = {
         {
             level: 'error',
             title: 'Missing or unsupported dependencies',
-            description: 'Correct the dependency issues listed in your log.',
+            preprocessor: getMissingOrUnsupportedDependencies,
             candidates: ['Missing or unsupported mandatory dependencies'],
             onlyAppearsOnce: true,
             versionChecks: [
@@ -139,6 +140,20 @@ export const forgeRules: RuleCategory = {
             description: 'Some mods can contain code from other mods and they can conflict. Remove one of the duplicate mods listed.',
             candidates: ['Found duplicate mods:'],
             onlyAppearsOnce: true,
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.GTE,
+                    version: '1.16.5',
+                },
+            ],
+        },
+        {
+            level: 'error',
+            title: 'Mod loading errors',
+            description: 'Some mods failed to load correctly.',
+            candidates: ['FMLModContainer/LOADING]: Failed to create mod instance. ModID:'],
+            onlyAppearsOnce: false,
             versionChecks: [
                 {
                     type: 'mcVersion',

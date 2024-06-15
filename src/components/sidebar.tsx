@@ -27,7 +27,6 @@ export default function Sidebar({ fileBrowserHandler, disclosure, file }: Sideba
             position="sticky"
             top={0}
             left={0}
-            alignSelf="flex-start"
             style={{ scrollbarWidth: 'none', backgroundColor: "#222020" }}>
             <Collapse animateOpacity in={!isOpen} style={{ zIndex: 10 }}>
                 <Accordion defaultIndex={[0, 1, 2]} allowMultiple>
