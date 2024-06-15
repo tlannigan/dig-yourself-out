@@ -15,7 +15,7 @@ export const forgeRules: RuleCategory = {
         {
             level: 'error',
             title: 'OptiFine detected',
-            description: 'Consider modern alternatives to OptiFine like Embeddium and Oculus or Sodium and Iris.',
+            description: 'Consider modern alternatives to OptiFine like Embeddium and Oculus.',
             candidates: ['OptiFineTransformationService.onLoad'],
             onlyAppearsOnce: true,
             versionChecks: [
