@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import { Equality } from '../constants/enums'
 
 export type RuleCategory = {
@@ -9,8 +10,8 @@ export type RuleCategory = {
 export type Rule = {
     level: string
     title: string
-    description?: string
-    preprocessor?: (lines: string[]) => string
+    description?: ReactElement[] | string
+    preprocessor?: (lines: string[]) => ReactElement[]
     candidates: string[]
     onlyAppearsOnce: boolean
     versionChecks: VersionCheck[]

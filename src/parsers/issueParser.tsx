@@ -38,8 +38,8 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
     if (issues.length === 0) {
         issues.push(getNoIssueIssue())
     }
-
-    return issues
+    
+    return issues.sort((a: ReactElement, b: ReactElement) => a.props.lineNumber - b.props.lineNumber)
 }
 
 // Check if rule should be applied

@@ -18,7 +18,7 @@ export default function Issue({ rule, lineNumber }: IssueProps) {
     }
 
     const lineNumberText = lineNumber >= 0
-        ? <span> on <Link href={'#' + lineNumber} onClick={scrollVertically}><Text as='u'>line {lineNumber}</Text></Link></span>
+        ? <span> on <Link href={'#' + lineNumber} onClick={scrollVertically}><span style={{ textDecoration: 'underline' }}>line {lineNumber}</span></Link></span>
         : ''
 
     return (
