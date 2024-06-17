@@ -152,7 +152,7 @@ export const forgeRules: RuleCategory = {
             level: 'error',
             title: 'Mod loading errors',
             description: 'Some mods failed to load correctly.',
-            candidates: ['FMLModContainer/LOADING]: Failed to create mod instance. ModID:'],
+            candidates: [': Failed to create mod instance. ModID:'],
             onlyAppearsOnce: false,
             versionChecks: [
                 {
