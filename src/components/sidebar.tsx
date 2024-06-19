@@ -15,27 +15,21 @@ export default function Sidebar({ fileBrowserHandler, disclosure, file }: Sideba
     const { isOpen, onToggle } = useDisclosure()
 
     return (
-        <Box
-            id="sidebar"
-            flexShrink={!isOpen ? 0 : 1}
-            boxSize="md"
-            maxW="100%"
-            h="100%"
-            pb={4}
-            pr={4}
-            overflowY={!isOpen ? 'auto' : 'visible'}
-            position="sticky"
-            top={0}
-            left={0}
-            style={{ scrollbarWidth: 'none', backgroundColor: "#222020" }}>
-            <Collapse animateOpacity in={!isOpen} style={{ zIndex: 10 }}>
-                <Accordion defaultIndex={[0, 1, 2]} allowMultiple>
-                    <FileActions fileBrowserHandler={fileBrowserHandler} disclosure={disclosure} />
-                    <FileDetails file={file} />
-                    <FileIssues file={file} />
-                </Accordion>
-            </Collapse>
-            <CollapseButton onToggle={onToggle} isOpen={isOpen} />
-        </Box>
+            <Box
+                id="sidebar"
+                flexBasis={!isOpen ? '28rem' : '0'}
+                maxH="calc(100dvh - 64px)"
+                pr={2}
+                overflowY={!isOpen ? 'auto' : 'visible'}
+                style={{ scrollbarWidth: 'thin' }}>
+                <Collapse animateOpacity in={!isOpen}>
+                    <Accordion defaultIndex={[0, 1, 2]} allowMultiple borderRadius={4}>
+                        <FileActions fileBrowserHandler={fileBrowserHandler} disclosure={disclosure} />
+                        <FileDetails file={file} />
+                        <FileIssues file={file} />
+                    </Accordion>
+                </Collapse>
+                <CollapseButton onToggle={onToggle} isOpen={isOpen} />
+            </Box>
     )
 }
