@@ -16,7 +16,7 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
         if (!doesRuleApplyToFile(fileInfo, ruleCategory, enableDebugging)) continue
 
         // Iterate over individual rules
-        for (const [index, rule] of ruleCategory.rules.entries()) {
+        for (const rule of ruleCategory.rules) {
             // Short circuit if file doesn't pass rule's version checks
             if (!doesRuleApplyToFile(fileInfo, rule, enableDebugging)) continue
 

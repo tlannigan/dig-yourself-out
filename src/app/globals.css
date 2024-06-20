@@ -64,7 +64,7 @@ body {
     color: #cbd5e0;
 }
 
-:target {
+.target {
     background: white;
     color: black;
 }

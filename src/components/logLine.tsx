@@ -1,7 +1,7 @@
 import { LogLevel } from '@/constants/enums'
 import { CSSProperties, memo } from 'react'
 
-export const LogLine = memo(function LogLine({ line, index, style }: { line: string, index: number, style: CSSProperties }) {
+export const LogLine = memo(function LogLine({ line, index, style, isTarget }: { line: string, index: number, style: CSSProperties, isTarget: boolean }) {
     const logLevel = getLogLevel(line)
 
     if (logLevel === LogLevel.STACKTRACE) {
@@ -9,7 +9,7 @@ export const LogLine = memo(function LogLine({ line, index, style }: { line: str
     }
 
     return (
-        <div id={`${index + 1}`} className={logLevel} style={style}>
+        <div id={`${index + 1}`} className={`${logLevel} ${isTarget ? 'target' : ''}`} style={style}>
             {line}
         </div>
     )

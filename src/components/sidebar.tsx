@@ -3,16 +3,17 @@ import FileDetails from './fileDetails'
 import FileIssues from './fileIssues'
 import CollapseButton from './collapseButton'
 import FileActions from './fileActions'
-import { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, Dispatch, SetStateAction } from 'react'
 
 export type SidebarProps = {
     fileBrowserHandler: ChangeEventHandler
     disclosure: UseDisclosureProps
     file: any
     listRef: any
+    setTargetLine: Dispatch<SetStateAction<number>>
 }
 
-export default function Sidebar({ fileBrowserHandler, disclosure, file, listRef }: SidebarProps) {
+export default function Sidebar({ fileBrowserHandler, disclosure, file, listRef, setTargetLine }: SidebarProps) {
     const { isOpen, onToggle } = useDisclosure()
 
     return (
@@ -27,7 +28,7 @@ export default function Sidebar({ fileBrowserHandler, disclosure, file, listRef 
                     <Accordion defaultIndex={[0, 1, 2]} allowMultiple borderRadius={4}>
                         <FileActions fileBrowserHandler={fileBrowserHandler} disclosure={disclosure} />
                         <FileDetails file={file} />
-                        <FileIssues issues={file.issues} listRef={listRef} />
+                        <FileIssues issues={file.issues} listRef={listRef} setTargetLine={setTargetLine} />
                     </Accordion>
                 </Collapse>
                 <CollapseButton onToggle={onToggle} isOpen={isOpen} />
