@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { Equality } from '../constants/enums'
+import { AlertLevel, Equality } from '../constants/enums'
 
 export type RuleCategory = {
     title: string
@@ -8,7 +8,7 @@ export type RuleCategory = {
 }
 
 export type Rule = {
-    level: string
+    level: AlertLevel
     title: string
     description?: ReactElement[] | string
     preprocessor?: (lines: string[]) => ReactElement[]
@@ -28,7 +28,7 @@ export const generalRules: RuleCategory = {
     versionChecks: [],
     rules: [
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Java 8 required',
             description: 'Minecraft 1.16.5 and older requires Java 8.',
             candidates: [],
@@ -47,7 +47,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Java 16 required',
             description: 'Minecraft 1.17 requires Java 16.',
             candidates: [],
@@ -66,7 +66,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Java 17 required',
             description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
@@ -85,7 +85,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Java 17 required',
             description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
@@ -104,7 +104,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Java 17 required',
             description: 'Minecraft 1.18+ requires Java 17.',
             candidates: [],
@@ -123,7 +123,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Java 21 required',
             description: 'Minecraft 1.20.5+ requires Java 21.',
             candidates: [],
@@ -142,7 +142,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Failed to bind to port',
             description:
                 'A process is already using the assigned port. Close any other servers or restart your computer.',
@@ -151,7 +151,7 @@ export const generalRules: RuleCategory = {
             versionChecks: [],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Mixin injection failure',
             description:
                 'A mod was unable to inject mixins. This may be caused by a single mod or an incompatibility between one or more mods.',
@@ -164,7 +164,7 @@ export const generalRules: RuleCategory = {
             versionChecks: [],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Mixin injection failure',
             description:
                 "Something is conflicting with Fabric's reach_entity_attributes module mixins. You will likely have to binary search to find the issue.",
@@ -181,7 +181,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Invalid or corrupted config',
             description:
                 'One or more config files have become corrupted. Fix or delete them. When this error occurs there are usually multiple config files that require attention.',
@@ -190,7 +190,7 @@ export const generalRules: RuleCategory = {
             versionChecks: [],
         },
         {
-            level: 'warning',
+            level: AlertLevel.WARNING,
             title: 'Server running in offline mode',
             description: 'Offline servers can cause problems with mods that rely on player IDs. Switch to online mode before continuing to debug.',
             candidates: ['SERVER IS RUNNING IN OFFLINE/INSECURE MODE'],
@@ -198,7 +198,7 @@ export const generalRules: RuleCategory = {
             versionChecks: [],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Pose stack not empty',
             description: 'This error is often caused by Epic Fight. Try removing it.',
             candidates: ['java.lang.IllegalStateException: Pose stack not empty'],
@@ -212,7 +212,7 @@ export const generalRules: RuleCategory = {
             ],
         },
         {
-            level: 'warning',
+            level: AlertLevel.WARNING,
             title: 'Log possibly cut off',
             description: 'If a log is written to at midnight it will be archived and a new file is created, leading to cut off logs.',
             candidates: ['00:00:00', '00:00:01', '00:00:02', '00:00:03', '00:00:04', '00:00:05'],
@@ -220,7 +220,7 @@ export const generalRules: RuleCategory = {
             versionChecks: [],
         },
         {
-            level: 'warning',
+            level: AlertLevel.WARNING,
             title: 'Cloud folder detected',
             description: 'It is not recommended to store your modpack instances or servers in cloud-saved folders, like OneDrive or CloudDocs, as it can lead to corrupted files.',
             candidates: ['OneDrive', 'com~apple~CloudDocs'],

@@ -14,7 +14,7 @@ export default function TableRow({ rowName, data }: TableRowProps) {
             <Tr>
                 <Td>{rowName}:</Td>
                 <Td>
-                    <Tooltip isDisabled={isDisabled} label={data} fontSize="md" bg="green.500">
+                    <Tooltip aria-disabled={isDisabled} isDisabled={isDisabled} label={data} fontSize="md" bg="green.500">
                         {truncateLine(data, maxCharacterLength)}
                     </Tooltip>
                 </Td>

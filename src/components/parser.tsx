@@ -4,7 +4,7 @@ import Sidebar from './sidebar'
 import LoadingOverlay from './loadingOverlay'
 import { FileHandlers } from './uploadCallToAction'
 import UploadRemoteFileModal from './uploadRemoteFileModal'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, createRef } from 'react'
 
 export type ParserProps = {
     handlers: FileHandlers
@@ -23,6 +23,8 @@ export default function Parser({
     isParsing,
     file,
 }: ParserProps) {
+    const listRef = createRef()
+
     return (
         <Flex
             borderRadius="lg"
@@ -35,10 +37,10 @@ export default function Parser({
 
             <LoadingOverlay isLoading={isLoading} isParsing={isParsing} />
 
-            <Sidebar fileBrowserHandler={handlers.fileBrowserHandler} disclosure={disclosure} file={file} />
+            <Sidebar fileBrowserHandler={handlers.fileBrowserHandler} disclosure={disclosure} file={file} listRef={listRef} />
 
             <Box flexGrow={1} pt={4} pl={4} fontSize={12} whiteSpace="pre">
-                <Log file={file} />
+                <Log file={file} listRef={listRef} />
             </Box>
 
             <UploadRemoteFileModal setRemoteFileUrl={setRemoteFileUrl} disclosure={disclosure} isLoading={isLoading} />

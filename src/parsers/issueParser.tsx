@@ -1,11 +1,14 @@
-import { ReactElement } from 'react'
-import Issue from '../components/issue'
-import { Equality } from '@/constants/enums'
-import { RuleCategory } from '@/rules/general'
+import { AlertLevel, Equality } from '@/constants/enums'
+import { Rule, RuleCategory } from '@/rules/general'
+
+export type Issue = {
+    rule: Rule
+    lineNumber: number
+}
 
 // Returns an array of issue components for each matched rule
-export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[], enableDebugging = false) {
-    const issues: ReactElement[] = []
+export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[], enableDebugging = false): Issue[] {
+    const issues: Issue[] = []
 
     // Iterate over rule categories
     for (const ruleCategory of ruleCategories) {
@@ -19,14 +22,14 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
 
             // Check if rule only consists of version checks and no line checking
             if (rule.candidates.length === 0) {
-                issues.push(<Issue rule={rule} lineNumber={-1} key={index} />)
+                issues.push({ rule: rule, lineNumber: -1 })
             } else {
                 for (let line = 0; line < fileInfo.lines.length; line++) {
                     if (rule.candidates.some((candidate: any) => fileInfo.lines[line].includes(candidate))) {
                         if (rule.preprocessor) {
                             rule.description = rule.preprocessor(fileInfo.lines.slice(line))
                         }
-                        issues.push(<Issue rule={rule} lineNumber={line + 1} key={line + 1} />)
+                        issues.push({ rule: rule, lineNumber: line + 1 })
                         if (rule.onlyAppearsOnce) break
                     }
                 }
@@ -39,7 +42,7 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
         issues.push(getNoIssueIssue())
     }
     
-    return issues.sort((a: ReactElement, b: ReactElement) => a.props.lineNumber - b.props.lineNumber)
+    return issues.sort((a: Issue, b: Issue) => a.lineNumber - b.lineNumber)
 }
 
 // Check if rule should be applied
@@ -166,15 +169,14 @@ function versionCompare(v1: string, v2: string, options: any): number {
 }
 
 export function getNoIssueIssue() {
-    const noIssueRule = {
-        level: 'info',
+    const noIssueRule: Rule = {
+        level: AlertLevel.INFO,
         title: 'No issues detected',
         description: 'This is either a good thing or a bad thing.',
+        candidates: [],
+        onlyAppearsOnce: true,
+        versionChecks: []
     }
 
-    return <Issue rule={noIssueRule} lineNumber={-1} key={0} />
-}
-
-export function getKey(index: number) {
-    return (index !== -1) ? index : 0
+    return { rule: noIssueRule, lineNumber: -1 }
 }

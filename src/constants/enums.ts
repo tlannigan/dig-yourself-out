@@ -40,3 +40,9 @@ export enum LogLevel {
     REPEATED = 'repeated',
     UNKNOWN = 'unknown'
 }
+
+export enum AlertLevel {
+    ERROR = "error",
+    WARNING = "warning",
+    INFO = "info"
+}

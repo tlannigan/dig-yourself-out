@@ -1,32 +1,19 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Text } from '@chakra-ui/react'
-import Link from 'next/link'
+import { Issue } from '@/parsers/issueParser'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box } from '@chakra-ui/react'
 
-export type IssueProps = {
-    rule: any,
-    lineNumber: number
-}
+export default function IssueAlert({ issue, listRef }: { issue: Issue, listRef: any }) {
+    // Use listRef to scroll to target line
+    const scrollTo = () => listRef?.current.scrollToItem(issue.lineNumber, 'start')
 
-export default function Issue({ rule, lineNumber }: IssueProps) {
-    // Use JS to scroll instead of anchor scrolling
-    // Otherwise horizontal scrolling happens, too
-    const scrollVertically = (event: any) => {
-        event.preventDefault()
-        const href = event.target.parentElement.getAttribute("href").slice(1)
-        window.location.hash = href
-        const target = document.querySelector(`[id='${href}']`) as HTMLElement
-        if (target) scroll(0, target.offsetTop)
-    }
-
-    const lineNumberText = lineNumber >= 0
-        ? <span> on <Link href={'#' + lineNumber} onClick={scrollVertically}><span style={{ textDecoration: 'underline' }}>line {lineNumber}</span></Link></span>
+    const lineNumberText = issue.lineNumber >= 0
+        ? <span> on <a href={'#' + issue.lineNumber} onClick={scrollTo}><span style={{ textDecoration: 'underline' }}>line {issue.lineNumber}</span></a></span>
         : ''
 
     return (
-        <Alert status={rule.level} variant='solid' borderRadius='lg'>
-            <AlertIcon />
+        <Alert status={issue.rule.level} variant='solid' borderRadius='lg'>
             <Box>
-                <AlertTitle>{rule.title}{lineNumberText}</AlertTitle>
-                <AlertDescription>{rule.description}</AlertDescription>
+                <AlertTitle>{issue.rule.title}{lineNumberText}</AlertTitle>
+                <AlertDescription>{issue.rule.description}</AlertDescription>
             </Box>
         </Alert>
     )

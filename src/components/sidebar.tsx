@@ -9,9 +9,10 @@ export type SidebarProps = {
     fileBrowserHandler: ChangeEventHandler
     disclosure: UseDisclosureProps
     file: any
+    listRef: any
 }
 
-export default function Sidebar({ fileBrowserHandler, disclosure, file }: SidebarProps) {
+export default function Sidebar({ fileBrowserHandler, disclosure, file, listRef }: SidebarProps) {
     const { isOpen, onToggle } = useDisclosure()
 
     return (
@@ -26,7 +27,7 @@ export default function Sidebar({ fileBrowserHandler, disclosure, file }: Sideba
                     <Accordion defaultIndex={[0, 1, 2]} allowMultiple borderRadius={4}>
                         <FileActions fileBrowserHandler={fileBrowserHandler} disclosure={disclosure} />
                         <FileDetails file={file} />
-                        <FileIssues file={file} />
+                        <FileIssues issues={file.issues} listRef={listRef} />
                     </Accordion>
                 </Collapse>
                 <CollapseButton onToggle={onToggle} isOpen={isOpen} />

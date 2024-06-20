@@ -1,10 +1,13 @@
+import { Issue } from '@/parsers/issueParser'
 import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Stack } from '@chakra-ui/react'
+import IssueAlert from './issue'
 
 export type FileIssueProps = {
-    file: any
+    issues: Issue[],
+    listRef: any
 }
 
-export default function FileIssues({ file }: FileIssueProps) {
+export default function FileIssues({ issues, listRef }: FileIssueProps) {
     return (
         <AccordionItem borderColor="transparent">
             <h2>
@@ -15,8 +18,10 @@ export default function FileIssues({ file }: FileIssueProps) {
                     <AccordionIcon />
                 </AccordionButton>
             </h2>
-            <AccordionPanel p={0}>
-                <Stack>{file && file.issues ? file.issues : ''}</Stack>
+            <AccordionPanel p={0} fontSize={14}>
+                <Stack>
+                    {issues.map((issue) => <IssueAlert key={issue.lineNumber} issue={issue} listRef={listRef} />)}
+                </Stack>
             </AccordionPanel>
         </AccordionItem>
     )
