@@ -1,4 +1,4 @@
-export class GetLinesState {
+export class LineParserState {
     allLines: string[] = []
     duplicateIndex: number = -1
     duplicateCount: number = 0
@@ -23,26 +23,26 @@ export default async function getLines(file: File, removeDuplicates: boolean) {
 }
 
 export async function parseLines(streamReader: ReadableStreamDefaultReader<string>, removeDuplicates: boolean) {
-    const state = new GetLinesState()
+    const state = new LineParserState()
 
     while (true) {
         const { done, value } = await streamReader.read()
 
-        const rawLines = value ? value.split(/\n/) : []
+        const rawLines = value ? value.split(/\r?\n/) : []
         const linesWithSpacesInsteadOfTabs = replaceTabsWithSpaces(rawLines)
         const lines = removeAllNewlineCharacters(linesWithSpacesInsteadOfTabs)
 
+        // Add a partial line from previous chunk if available
         if (state.partialLine !== '' && lines.length > 0) {
             lines[0] = state.partialLine + lines[0] // Complete the partial line
-            state.partialLine = ''
+            state.partialLine = '' // Reset partial line state
         } else if (state.partialLine !== '') {
             lines.push(state.partialLine)
         }
 
         // Check for a partial line that doesn't end with a newline
         if (lines.length > 0 && !lastLineEndsWithNewline(rawLines) && !done) {
-            const poppedLine = lines.pop() as string
-            state.partialLine = poppedLine
+            state.partialLine = lines.pop() as string
         }
 
         if (removeDuplicates) {
@@ -59,7 +59,7 @@ export async function parseLines(streamReader: ReadableStreamDefaultReader<strin
     return linesWithNewlines
 }
 
-export function deduplicateLines(lines: string[], state: GetLinesState, done: boolean) {
+export function deduplicateLines(lines: string[], state: LineParserState, done: boolean) {
     const deduplicatedLines = []
 
     const addRepeatedLine = () => {
@@ -136,7 +136,7 @@ export function addNewlineCharacterEndings(lines: string[]) {
 }
 
 export function lastLineEndsWithNewline(lines: string[]) {
-    return /(\r\n|\r|\n)/.test(lines[lines.length - 1])
+    return /\r?\n/g.test(lines[lines.length - 1])
 }
 
 export function removeTimestamp(line: string) {
