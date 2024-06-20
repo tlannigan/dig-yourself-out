@@ -1,4 +1,4 @@
-import { Equality } from '../constants/enums'
+import { AlertLevel, Equality } from '../constants/enums'
 import { RuleCategory } from './general'
 import { getMissingOrUnsupportedDependencies } from './rulePreprocessor'
 
@@ -13,7 +13,7 @@ export const forgeRules: RuleCategory = {
     ],
     rules: [
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'OptiFine detected',
             description: 'Consider modern alternatives to OptiFine like Embeddium and Oculus.',
             candidates: ['OptiFineTransformationService.onLoad'],
@@ -27,7 +27,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Missing or unsupported dependencies',
             preprocessor: getMissingOrUnsupportedDependencies,
             candidates: ['Missing or unsupported mandatory dependencies'],
@@ -41,7 +41,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Unsupported optional dependencies',
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['Unsupported installed optional dependencies'],
@@ -55,7 +55,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Missing dependencies',
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['net.minecraftforge.fml.ModLoadingException'],
@@ -69,7 +69,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Missing dependencies',
             description: 'Correct the dependency issues listed in your log.',
             candidates: ['net.minecraftforge.fml.common.MissingModsException'],
@@ -83,7 +83,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Missing dependencies',
             description: 'Correct the dependency issues listed in your log.',
             candidates: [') requires mods ['],
@@ -97,7 +97,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Wrong Java 8 version',
             description: 'Forge 36.2.25 and below requires Java 8 update 320 or below for Minecraft 1.16.',
             candidates: [],
@@ -121,7 +121,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Failed to initialize mod container',
             description: 'This can be caused by using a mod for the wrong modloader (eg. Fabric vs. Forge).',
             candidates: ['The following classes are missing, but are reported in the mods.toml'],
@@ -135,7 +135,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Duplicate mods detected',
             description: 'Some mods can contain code from other mods and they can conflict. Remove one of the duplicate mods listed.',
             candidates: ['Found duplicate mods:'],
@@ -149,7 +149,7 @@ export const forgeRules: RuleCategory = {
             ],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Mod loading errors',
             description: 'Some mods failed to load correctly.',
             candidates: [': Failed to create mod instance. ModID:'],

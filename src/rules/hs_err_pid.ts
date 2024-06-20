@@ -1,3 +1,4 @@
+import { AlertLevel } from '@/constants/enums'
 import { RuleCategory } from './general'
 
 export const hotspotCrashDumpRules: RuleCategory = {
@@ -5,7 +6,7 @@ export const hotspotCrashDumpRules: RuleCategory = {
     versionChecks: [],
     rules: [
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'AMD driver crash',
             description:
                 'An AMD driver issue has crashed your game. Make sure Minecraft is using the right GPU or update your AMD drivers.',
@@ -14,7 +15,7 @@ export const hotspotCrashDumpRules: RuleCategory = {
             versionChecks: [],
         },
         {
-            level: 'error',
+            level: AlertLevel.ERROR,
             title: 'Intel driver crash',
             description:
                 'An Intel driver issue has crashed your game. Try updating your graphic drivers or try some of the solutions at https://bugs.mojang.com/browse/MC-32606.',
