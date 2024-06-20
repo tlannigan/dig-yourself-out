@@ -18,7 +18,14 @@ export const metadata: Metadata = {
         url: 'https://digyourselfout.app',
         siteName: 'Dig Yourself Out',
         type: 'website',
-        locale: 'en_US'
+        locale: 'en_US',
+        images: [
+            {
+                url: 'https://digyourselfout.app/opengraph-image.png',
+                width: 1920,
+                height: 1080
+            }
+        ]
     }
 }
 
