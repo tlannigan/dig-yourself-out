@@ -6,7 +6,7 @@ export default function Log({ file }: { file: any }) {
     return (
         <AutoSizer>
             {({ height, width }) => (
-                <List height={height} itemCount={file.lines.length} itemSize={20} width={width}>
+                <List height={height} itemCount={file.lines.length} itemSize={20} width={width} style={{ overflowX: 'scroll' }}>
                     {({ index, style }) => <LogLine style={style} line={file.lines[index]} />}
                 </List>
             )}
