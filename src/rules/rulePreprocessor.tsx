@@ -47,12 +47,15 @@ export const getDuplicateMods = (lines: string[]): ReactElement[] => {
 
 // [29May2024 12:51:10.411] [main/FATAL] [mixin/]: Mixin apply failed shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> net.minecraft.client.gui.screens.Screen: org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException @ModifyArg annotation on updateTooltipLeftAndBottomPos specifies a target class 'net/minecraft/client/gui/screen/Screen', which is not supported [PREINJECT Applicator Phase -> shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> Prepare Injections ->  -> modify$bng000$updateTooltipLeftAndBottomPos(Lcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/BufferBuilder;IIIIIII)I -> Parse]
 // Caused by: org.spongepowered.asm.mixin.injection.throwables.InjectionError: Critical injection failure: Variable modifier method setBlockStateInjectGenerateSkylightMapVanilla(Z)Z in mixins.phosphor.json:common.MixinChunk$Vanilla from mod unknown-owner failed injection check, (0/1) succeeded. Scanned 1 target(s). Using refmap mixins.phosphor.refmap.json
+// [17:12:54] [main/ERROR]: Mixin apply for mod durabilityviewer failed mixins.durabilityviewer.json:TooltipMixin from mod durabilityviewer -> net.minecraft.class_1799: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException @Shadow method method_7969 in mixins.durabilityviewer.json:TooltipMixin from mod durabilityviewer was not located in the target class net.minecraft.class_1799. Using refmap DurabilityViewer-refmap.json
 export const getMixinApplyFailures = (lines: string[]): ReactElement[] => {
     const alertElements = [<p key={-1}>These mixins are failing to apply, try removing the mod(s) that own them:</p>]
-    const mixinJsons = lines[0].match(/(((\w+)|(\w+(-|\.|_)\w+))\.(mixins|mixin|refmap)+.json)/g)
+    const splitWords = lines[0].trim().split(/[\s:]/g)
+    const mixinJsons = splitWords.filter((word) => word.endsWith('.json') && !word.includes('refmap'))
+
     if (mixinJsons) {
-        // Remove "mixins", "json", and/or "refmap" portions of the mixin name, leaving the name given by the mod author
-        const filteredMixinNames = new Set(mixinJsons.map((mixin) => mixin.replace(/(mixins|mixin|refmap|json)/g, '')))
+        // Remove "mixins" and "json" portions of the mixin name, leaving the name given by the mod author
+        const filteredMixinNames = new Set(mixinJsons.map((mixin) => mixin.replace(/(mixins|mixin|json)/g, '')))
 
         for (const [index, mixin] of filteredMixinNames.entries()) {
             alertElements.push(<p key={index}>&bull; {mixin.split('.')}</p>)
