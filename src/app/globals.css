@@ -65,6 +65,6 @@ body {
 }
 
 .target {
-    background: white;
-    color: black;
+    font-weight: 700;
+    text-decoration: dashed underline white 1px;
 }
