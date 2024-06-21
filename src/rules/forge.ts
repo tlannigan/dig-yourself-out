@@ -1,6 +1,6 @@
 import { AlertLevel, Equality } from '../constants/enums'
 import { RuleCategory } from './general'
-import { getMissingOrUnsupportedDependencies } from './rulePreprocessor'
+import { getDuplicateMods, getMissingOrUnsupportedDependencies } from './rulePreprocessor'
 
 export const forgeRules: RuleCategory = {
     title: 'Forge',
@@ -138,6 +138,7 @@ export const forgeRules: RuleCategory = {
             level: AlertLevel.ERROR,
             title: 'Duplicate mods detected',
             description: 'Some mods can contain code from other mods and they can conflict. Remove one of the duplicate mods listed.',
+            preprocessor: getDuplicateMods,
             candidates: ['Found duplicate mods:'],
             onlyAppearsOnce: true,
             versionChecks: [
