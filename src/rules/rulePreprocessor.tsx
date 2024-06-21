@@ -50,10 +50,11 @@ export const getDuplicateMods = (lines: string[]): ReactElement[] => {
 // [29May2024 12:51:10.411] [main/FATAL] [mixin/]: Mixin apply failed shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> net.minecraft.client.gui.screens.Screen: org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException @ModifyArg annotation on updateTooltipLeftAndBottomPos specifies a target class 'net/minecraft/client/gui/screen/Screen', which is not supported [PREINJECT Applicator Phase -> shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> Prepare Injections ->  -> modify$bng000$updateTooltipLeftAndBottomPos(Lcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/BufferBuilder;IIIIIII)I -> Parse]
 export const getMixinApplyFailures = (lines: string[]): ReactElement[] => {
     let namedMixins = [<p key={-1}>These mixins are failing to apply, try removing the mods that own them:</p>]
-    let mixinJsons = new Set(lines[0].match(/(((\w+-\w+)|(\w+))\.(mixins|mixin)+.json)/g))
+    let mixinJsons = new Set(lines[0].match(/(((\w+)|(\w+(-|\.|_)\w+))\.(mixins|mixin)+.json)/g))
     if (mixinJsons) {
         for (const [index, mixin] of mixinJsons.entries()) {
-            namedMixins.push(<p key={index}>&bull; {mixin.split('.')[0]}</p>)
+            // Remove the "mixins.json" portion of the mixin name, leaving the name given by the mod author
+            namedMixins.push(<p key={index}>&bull; {mixin.split('.').slice(0, -2).join('.')}</p>)
         }
     }
 
