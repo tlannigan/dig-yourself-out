@@ -1,6 +1,6 @@
 import { AlertLevel, Equality } from '../constants/enums'
 import { RuleCategory } from './general'
-import { getDuplicateMods, getMissingOrUnsupportedDependencies } from './rulePreprocessor'
+import { getDuplicateMods, getMissingOrUnsupportedDependencies, getModloadingErrorMods } from './rulePreprocessor'
 
 export const forgeRules: RuleCategory = {
     title: 'Forge',
@@ -151,8 +151,8 @@ export const forgeRules: RuleCategory = {
         },
         {
             level: AlertLevel.ERROR,
-            title: 'Mod loading errors',
-            description: 'Some mods failed to load correctly.',
+            title: 'Mod loading error',
+            preprocessor: getModloadingErrorMods,
             candidates: [': Failed to create mod instance. ModID:'],
             onlyAppearsOnce: false,
             versionChecks: [

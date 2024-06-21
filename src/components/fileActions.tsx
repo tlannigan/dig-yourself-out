@@ -70,8 +70,6 @@ export default function FileActions({ fileBrowserHandler, disclosure }: FileActi
                             Upload from URL
                         </Button>
                     </Flex>
-                    {/* <Text mt={4}>Copy this file&apos;s URL to clipboard</Text>
-                    <Button w='min-content' aria-label='Visit Discord community' rightIcon={<CopyAll />} variant='outline' textColor='white' _hover={{ bg: 'green.500', borderColor: 'transparent' }}>Share</Button> */}
                 </Flex>
             </AccordionPanel>
         </AccordionItem>
