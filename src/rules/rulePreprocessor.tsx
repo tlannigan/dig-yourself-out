@@ -66,5 +66,5 @@ export const getMixinApplyFailures = (lines: string[]): ReactElement[] => {
 export const getModloadingErrorMods = (lines: string[]) => {
     const indexOfModName = lines[0].toLowerCase().indexOf('modid: ') + 7
     const modName = lines[0].slice(indexOfModName).split(', ')[0]
-    return [<p key={1}>Mod ID {modName} failed to load correctly.</p>]
+    return [<p key={1}>Mod ID &quot;{modName}&quot; failed to load correctly.</p>]
 }

@@ -26,10 +26,12 @@ export default function getIssues(fileInfo: any, ruleCategories: RuleCategory[],
             } else {
                 for (let line = 0; line < fileInfo.lines.length; line++) {
                     if (rule.candidates.some((candidate: any) => fileInfo.lines[line].includes(candidate))) {
+                        // Clone properties from rule to new object
+                        const clonedRule = Object.assign({}, rule)
                         if (rule.preprocessor) {
-                            rule.description = rule.preprocessor(fileInfo.lines.slice(line))
+                            clonedRule.description = rule.preprocessor(fileInfo.lines.slice(line))
                         }
-                        issues.push({ rule: rule, lineNumber: line + 1 })
+                        issues.push({ rule: clonedRule, lineNumber: line + 1 })
                         if (rule.onlyAppearsOnce) break
                     }
                 }

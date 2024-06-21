@@ -22,7 +22,7 @@ export function getLogLevel(line: string) {
         return LogLevel.WARNING
     } else if (line.includes('/ERROR]') || line.includes('/FATAL]')) {
         return LogLevel.ERROR
-    } else if (line.match(/((.\w+Exception:)|(.\w+Error:))/g)) {
+    } else if (line.match(/((Caused by:)|(.\w+Error:)|(.\w+Exception:))/g)) {
         return LogLevel.ERROR
     } else if (line.trim().startsWith('at ')) {
         return LogLevel.STACKTRACE
