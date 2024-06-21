@@ -28,10 +28,6 @@ export const getMissingOrUnsupportedDependencies = (lines: string[]): ReactEleme
     return unique(missingDependencies)
 }
 
-// Examples
-// [29May2024 12:51:10.411] [main/FATAL] [mixin/]: Mixin apply failed shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> net.minecraft.client.gui.screens.Screen: org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException @ModifyArg annotation on updateTooltipLeftAndBottomPos specifies a target class 'net/minecraft/client/gui/screen/Screen', which is not supported [PREINJECT Applicator Phase -> shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> Prepare Injections ->  -> modify$bng000$updateTooltipLeftAndBottomPos(Lcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/BufferBuilder;IIIIIII)I -> Parse]
-// Filename: mixin_apply_failed.log
-
 export const getDuplicateMods = (lines: string[]): ReactElement[] => {
     let duplicateMods = [<p key={0}>Remove one of the following mods:</p>]
     for (let i = 1; i < lines.length; i++) {
@@ -49,4 +45,17 @@ export const getDuplicateMods = (lines: string[]): ReactElement[] => {
     }
 
     return duplicateMods
+}
+
+// [29May2024 12:51:10.411] [main/FATAL] [mixin/]: Mixin apply failed shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> net.minecraft.client.gui.screens.Screen: org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException @ModifyArg annotation on updateTooltipLeftAndBottomPos specifies a target class 'net/minecraft/client/gui/screen/Screen', which is not supported [PREINJECT Applicator Phase -> shulkerboxtooltip-common.mixins.json:client.ScreenMixin -> Prepare Injections ->  -> modify$bng000$updateTooltipLeftAndBottomPos(Lcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/BufferBuilder;IIIIIII)I -> Parse]
+export const getMixinApplyFailures = (lines: string[]): ReactElement[] => {
+    let namedMixins = [<p key={-1}>These mixins are failing to apply, try removing the mods that own them:</p>]
+    let mixinJsons = new Set(lines[0].match(/(((\w+-\w+)|(\w+))\.(mixins|mixin)+.json)/g))
+    if (mixinJsons) {
+        for (const [index, mixin] of mixinJsons.entries()) {
+            namedMixins.push(<p key={index}>&bull; {mixin.split('.')[0]}</p>)
+        }
+    }
+
+    return namedMixins
 }

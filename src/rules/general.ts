@@ -1,5 +1,6 @@
 import { ReactElement } from 'react'
 import { AlertLevel, Equality } from '../constants/enums'
+import { getMixinApplyFailures } from './rulePreprocessor'
 
 export type RuleCategory = {
     title: string
@@ -153,8 +154,7 @@ export const generalRules: RuleCategory = {
         {
             level: AlertLevel.ERROR,
             title: 'Mixin injection failure',
-            description:
-                'A mod was unable to inject mixins. This may be caused by a single mod or an incompatibility between one or more mods.',
+            preprocessor: getMixinApplyFailures,
             candidates: [
                 'Mixin apply failed',
                 'ERROR]: Mixin apply for mod',
