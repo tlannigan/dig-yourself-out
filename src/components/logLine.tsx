@@ -5,12 +5,12 @@ export const LogLine = memo(function LogLine({ line, index, style, isTarget }: {
     const logLevel = getLogLevel(line)
 
     if (logLevel === LogLevel.STACKTRACE) {
-        return getStacktraceLine(line, index, style)
+        return getStacktraceLine(line, index, style, isTarget)
     }
 
     return (
-        <div id={`${index + 1}`} className={`${logLevel} ${isTarget ? 'target' : ''}`} style={style}>
-            {line}
+        <div id={`${index + 1}`} className={logLevel} style={style}>
+            <span className={isTarget ? 'target' : ''}>{line}</span>
         </div>
     )
 })
@@ -34,16 +34,18 @@ export function getLogLevel(line: string) {
 }
 
 // at com.tterrag.registrate.util.entry.RegistryEntry.get(RegistryEntry.java:114) ~[Registrate-MC1.20-1.3.11.jar%23602!/:?] {re:mixin,re:classloading}
-export function getStacktraceLine(line: string, index: number, style: CSSProperties) {
+export function getStacktraceLine(line: string, index: number, style: CSSProperties, isTarget: boolean) {
     const firstUpperCase = indexOfFirstUppercase(line)
     return (
         <div id={`${index}`} className={LogLevel.STACKTRACE} style={style}>
-            <span className="class-path"> {getClassPath(line, firstUpperCase)}</span>
-            <span className="class-name">{getClassName(line, firstUpperCase)}</span>
-            <span className="method">{getMethod(line, firstUpperCase)}</span>
-            <span className="class-file">{getClassFile(line)} </span>
-            <span className="jar">{getJar(line)} </span>
-            <span className="mixin-list">{getMixinList(line)}</span>
+            <span className={isTarget ? 'target' : ''}>
+                <span className="class-path"> {getClassPath(line, firstUpperCase)}</span>
+                <span className="class-name">{getClassName(line, firstUpperCase)}</span>
+                <span className="method">{getMethod(line, firstUpperCase)}</span>
+                <span className="class-file">{getClassFile(line)} </span>
+                <span className="jar">{getJar(line)} </span>
+                <span className="mixin-list">{getMixinList(line)}</span>
+            </span>
         </div>
     )
 }
