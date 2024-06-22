@@ -13,7 +13,7 @@ export default function NavLinks() {
     }
 
     return (
-        <HStack spacing={'3rem'} fontSize={20}>
+        <HStack spacing={8} fontSize={20} flexGrow={1}>
             <Link href="/analyzer">
                 <Text
                     h={'100%'}

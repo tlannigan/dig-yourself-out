@@ -6,6 +6,7 @@ export default function HeaderTitle() {
         <HStack fontSize={[16, 24, 24]} lineHeight={1.15} columnGap={4}>
             <Link href="/">
                 <Text
+                    mr={8}
                     fontWeight={700}
                     _hover={{
                         textDecoration: 'underline 3px',

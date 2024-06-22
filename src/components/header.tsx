@@ -7,7 +7,7 @@ import HamburgerMenu from './hamburgerMenu'
 export default function Header() {
     return (
         <Box as="header" maxW="100dvw" bg="green.500" borderRadius="lg" px={4} py={2}>
-            <Flex justify="space-between">
+            <Flex>
                 <HeaderTitle />
                 <Hide below="md">
                     <NavLinks />
