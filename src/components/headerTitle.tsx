@@ -3,10 +3,9 @@ import Link from 'next/link'
 
 export default function HeaderTitle() {
     return (
-        <HStack fontSize={[16, 24, 24]} lineHeight={1.15} columnGap={4}>
+        <HStack fontSize={[16, 24, 24]} lineHeight={1.15} columnGap={4} mr={8}>
             <Link href="/">
                 <Text
-                    mr={8}
                     fontWeight={700}
                     _hover={{
                         textDecoration: 'underline 3px',
