@@ -57,12 +57,12 @@ export const generalRules: RuleCategory = {
                 {
                     type: 'mcVersion',
                     equality: Equality.RANGE,
-                    version: '1.17.0...1.18.3',
+                    version: '1.17.0...1.18.0',
                 },
                 {
                     type: 'java',
                     equality: Equality.RANGE,
-                    version: '16.0.0...17.0.1',
+                    version: '16.0.0...17.0.0',
                 },
             ],
         },
@@ -75,8 +75,8 @@ export const generalRules: RuleCategory = {
             versionChecks: [
                 {
                     type: 'mcVersion',
-                    equality: Equality.GTE,
-                    version: '1.18.0',
+                    equality: Equality.RANGE,
+                    version: '1.18.0...1.20.5',
                 },
                 {
                     type: 'java',
@@ -94,8 +94,8 @@ export const generalRules: RuleCategory = {
             versionChecks: [
                 {
                     type: 'mcVersion',
-                    equality: Equality.GTE,
-                    version: '1.18.0',
+                    equality: Equality.RANGE,
+                    version: '1.18.0...1.20.5',
                 },
                 {
                     type: 'java',
@@ -113,8 +113,8 @@ export const generalRules: RuleCategory = {
             versionChecks: [
                 {
                     type: 'mcVersion',
-                    equality: Equality.GTE,
-                    version: '1.18.0',
+                    equality: Equality.RANGE,
+                    version: '1.18.0...1.20.5',
                 },
                 {
                     type: 'java',
@@ -137,8 +137,8 @@ export const generalRules: RuleCategory = {
                 },
                 {
                     type: 'java',
-                    equality: Equality.RANGE,
-                    version: '21.0.0...22.0.0',
+                    equality: Equality.GTE,
+                    version: '22.0.0',
                 },
             ],
         },
