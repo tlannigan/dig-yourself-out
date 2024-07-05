@@ -51,7 +51,7 @@ export function getStacktraceLine(line: string, index: number, style: CSSPropert
 }
 
 export function getClassPath(line: string, firstUpperCase: number) {
-    const start = line.indexOf('at ') - 3
+    const start = line.indexOf('at ')
     const end = firstUpperCase - 1
     if (start >= 0 && end >= 0) {
         return line.substring(start, end)
