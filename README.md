@@ -70,6 +70,11 @@ Drag your Minecraft logs, crash reports, and Java crash dumps into the site to h
 - Mixin errors
 - Wrong Java version
 - Corrupted config files
+- Duplicate mods
+- Mod loading errors
 - Server port binding failure
 - AMD graphics driver crashes
 - Intel graphics driver crashes
+- Storing client/server in a cloud folder (OneDrive, Dropbox, Apple CloudDocs, etc)
+- Cut off log from logging past midnight
+- OptiFine
