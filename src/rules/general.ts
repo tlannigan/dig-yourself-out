@@ -227,5 +227,33 @@ export const generalRules: RuleCategory = {
             onlyAppearsOnce: true,
             versionChecks: [],
         },
+        {
+            level: AlertLevel.ERROR,
+            title: 'Maximum ID range exceeded',
+            description: 'Install NEID.',
+            candidates: ['Invalid id 4096 - maximum id range exceeded'],
+            onlyAppearsOnce: true,
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.RANGE,
+                    version: '1.7...1.8'
+                }
+            ],
+        },
+        {
+            level: AlertLevel.ERROR,
+            title: 'Maximum ID range exceeded',
+            description: 'Install REID.',
+            candidates: ['Invalid id 4096 - maximum id range exceeded'],
+            onlyAppearsOnce: true,
+            versionChecks: [
+                {
+                    type: 'mcVersion',
+                    equality: Equality.RANGE,
+                    version: '1.12...1.13'
+                }
+            ],
+        },
     ],
 }
