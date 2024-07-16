@@ -16,7 +16,7 @@ export default function LogAnalyzerInfo() {
                 <Heading fontSize={{ base: 24, lg: 32 }} mb={4}>Log Analyzer</Heading>
 
                 <Text mb={4}>
-                    A tool that accepts common types of (modded) Minecraft logs and automatically tell you what&apos;s
+                    A tool that accepts common types of (modded) Minecraft logs and automatically tells you what&apos;s
                     wrong.
                 </Text>
 
