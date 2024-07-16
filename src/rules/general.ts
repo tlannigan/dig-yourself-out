@@ -230,7 +230,7 @@ export const generalRules: RuleCategory = {
         {
             level: AlertLevel.ERROR,
             title: 'Maximum ID range exceeded',
-            description: 'Install NEID.',
+            description: 'Install Not Enough Item IDs (NEID).',
             candidates: ['Invalid id 4096 - maximum id range exceeded'],
             onlyAppearsOnce: true,
             versionChecks: [
@@ -244,7 +244,7 @@ export const generalRules: RuleCategory = {
         {
             level: AlertLevel.ERROR,
             title: 'Maximum ID range exceeded',
-            description: 'Install REID.',
+            description: 'Install Roughly Enough Item IDs (REID).',
             candidates: ['Invalid id 4096 - maximum id range exceeded'],
             onlyAppearsOnce: true,
             versionChecks: [
